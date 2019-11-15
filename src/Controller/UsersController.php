@@ -40,6 +40,7 @@ class UsersController extends AppController
         }
     }
 
+
     /**
      * View method
      *
@@ -56,49 +57,20 @@ class UsersController extends AppController
         $this->set('user', $user);
     }
 
+
     /**
-     * Index method for accountant accounts
+     * Index method for user accounts
      *
      * @return \Cake\Http\Response|void
      */
-     public function divisionDirectors() {   
-        $divisionDirectors = $this->Users->find('all', [
-            'fields' => ['id','email'],
-            'conditions' => ['Users.role = \'D\'']
-        ]);
-
-        $divisionDirectors = $this->paginate($divisionDirectors);
-        $this->set(compact('divisionDirectors', $divisionDirectors));
-    }
-
-    /**
-     * Index method for general director accounts
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function generalDirectors() {   
-        $generalDirectors = $this->Users->find('all', [
-            'fields' => ['id','email'],
-            'conditions' => ['Users.role = \'G\'']
-        ]);
-
-        $generalDirectors = $this->paginate($generalDirectors);
-        $this->set(compact('generalDirectors', $generalDirectors));
-    }
-
-    /**
-     * Index method for seller accounts
-     *
-     * @return \Cake\Http\Response|void
-     */
-    public function sellers() {   
-        $sellers = $this->Users->find('all', [
+    public function index() {  
+        $users = $this->Users->find('all', [
             'fields' => ['id','email'],
             'conditions' => ['Users.role = \'S\'']
         ]);
 
-        $sellers = $this->paginate($sellers);
-        $this->set(compact('sellers', $sellers));
+        $users = $this->paginate($users);
+        $this->set(compact('users', $users));
     }
 
     /**

@@ -3,14 +3,33 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
  */
+    $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
 ?>
 <nav class="large-3 medium-4 columns" id="actions-sidebar">
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <!-- Users actions -->
-        <li><?= $this->Html->link(__('List General Directors'), ['controller' => 'Users', 'action' => 'generalDirectors']) ?></li>
-        <li><?= $this->Html->link(__('List Sellers'), ['controller' => 'Users', 'action' => 'sellers']) ?></li>
-        <li><?= $this->Html->link(__('List Division Directors'), ['controller' => 'Users', 'action' => 'divisionDirectors']) ?></li>
+        <?php if($loggedUser["role"] === "G"){
+            ?>
+            <!-- Liste di utenti -->
+            <li><?= $this->Html->link(__('List General Directors'), ['controller' => 'Users', 'action' => 'generalDirectors']) ?></li>
+            <!-- Liste di azioni:
+                Vedi form da altri direttori generali
+                Manda form a direttori di divisione
+                Vedi form dei casi di shock da venditori + generazione form riepilogativo
+            -->
+            <?php
+        } else if($loggedUser["role"] === "D"){
+            ?>
+            <li><?= $this->Html->link(__('List Sellers'), ['controller' => 'Users', 'action' => 'sellers']) ?></li>
+            <?php
+        } else if($loggedUser["role"] === "S"){
+            ?>
+            <li><?= $this->Html->link(__('List Division Directors'), ['controller' => 'Users', 'action' => 'divisionDirectors']) ?></li>
+        
+            <?php
+        }
+        ?>
         <!-- Logout -->
         <li><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
     </ul>
@@ -25,13 +44,11 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($generalDirectors as $generalDirector): ?>
+            <?php foreach ($users as $users): ?>
             <tr>
-                <td><?= h($generalDirector->email) ?></td>
+                <td><?= h($users->email) ?></td>
                 <td class="actions">
-
-                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $generalDirector->id]) ?>
-
+                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $users->id]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>
