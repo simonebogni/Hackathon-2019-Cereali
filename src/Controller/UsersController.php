@@ -72,18 +72,18 @@ class UsersController extends AppController
     }
 
     /**
-     * Index method for company accounts
+     * Index method for general director accounts
      *
      * @return \Cake\Http\Response|void
      */
-    public function companies() {   
-        $companies = $this->Users->find('all', [
+    public function generalDirectors() {   
+        $generalDirectors = $this->Users->find('all', [
             'fields' => ['id','email'],
-            'conditions' => ['Users.role = \'C\'']
+            'conditions' => ['Users.role = \'G\'']
         ]);
 
-        $companies = $this->paginate($companies);
-        $this->set(compact('companies', $companies));
+        $generalDirectors = $this->paginate($generalDirectors);
+        $this->set(compact('generalDirectors', $generalDirectors));
     }
 
     /**

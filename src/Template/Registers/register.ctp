@@ -21,9 +21,9 @@
             echo $this->Form->select(
                 'role',
                 [
-                    'E' => 'Employee',
-                    'C' => 'Company',
-                    'A' =>'Accountant'
+                    'S' => 'Seller',
+                    'G' => 'General Director',
+                    'D' => 'Division Director'
                 ]
             );
         ?>
