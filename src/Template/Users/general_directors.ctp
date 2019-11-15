@@ -8,16 +8,9 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <!-- Users actions -->
-        <li><?= $this->Html->link(__('List Companies'), ['controller' => 'Users', 'action' => 'companies']) ?></li>
+        <li><?= $this->Html->link(__('List General Directors'), ['controller' => 'Users', 'action' => 'generalDirectors']) ?></li>
         <li><?= $this->Html->link(__('List Employees'), ['controller' => 'Users', 'action' => 'employees']) ?></li>
         <li><?= $this->Html->link(__('List Accountants'), ['controller' => 'Users', 'action' => 'accountants']) ?></li>
-        <!-- Headquarters -->
-        <li><?= $this->Html->link(__('List Headquarters'), ['controller' => 'Headquarters', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('Add Headquarter'), ['controller' => 'Headquarters', 'action' => 'add']) ?></li>
-        <!-- Contracts -->
-        <li><?= $this->Html->link(__('List Contracts'), ['controller' => 'Contracts', 'action' => 'index']) ?></li>
-        <!-- Hours -->
-        <li><?= $this->Html->link(__('List Hours'), ['controller' => 'Hours', 'action' => 'index']) ?></li>
         <!-- Logout -->
         <li><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
     </ul>
@@ -32,13 +25,13 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($companies as $company): ?>
+            <?php foreach ($generalDirectors as $generalDirector): ?>
             <tr>
-                <td><?= h($company->email) ?></td>
+                <td><?= h($generalDirector->email) ?></td>
                 <td class="actions">
 
-                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $company->id]) ?>
-                    <?= $this->Html->link(__('Contact'), ['controller' => 'Requests', 'action' => 'contactCompany', $company->id]) ?>
+                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $generalDirector->id]) ?>
+
                 </td>
             </tr>
             <?php endforeach; ?>
