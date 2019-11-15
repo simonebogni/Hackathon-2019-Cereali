@@ -61,14 +61,14 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|void
      */
-    public function accountants() {   
-        $accountants = $this->Users->find('all', [
+     public function divisionDirectors() {   
+        $divisionDirectors = $this->Users->find('all', [
             'fields' => ['id','email'],
-            'conditions' => ['Users.role = \'A\'']
+            'conditions' => ['Users.role = \'D\'']
         ]);
 
-        $accountants = $this->paginate($accountants);
-        $this->set(compact('accountants', $accountants));
+        $divisionDirectors = $this->paginate($divisionDirectors);
+        $this->set(compact('divisionDirectors', $divisionDirectors));
     }
 
     /**

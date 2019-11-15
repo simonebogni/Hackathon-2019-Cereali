@@ -10,14 +10,9 @@
         <!-- Users actions -->
         <li><?= $this->Html->link(__('List Companies'), ['controller' => 'Users', 'action' => 'companies']) ?></li>
         <li><?= $this->Html->link(__('List Employees'), ['controller' => 'Users', 'action' => 'employees']) ?></li>
-        <li><?= $this->Html->link(__('List Accountants'), ['controller' => 'Users', 'action' => 'accountants']) ?></li>
+        <li><?= $this->Html->link(__('List Division Directors'), ['controller' => 'Users', 'action' => 'divisionDirectors']) ?></li>
         <!-- Headquarters -->
-        <li><?= $this->Html->link(__('List Headquarters'), ['controller' => 'Headquarters', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('Add Headquarter'), ['controller' => 'Headquarters', 'action' => 'add']) ?></li>
-        <!-- Contracts -->
-        <li><?= $this->Html->link(__('List Contracts'), ['controller' => 'Contracts', 'action' => 'index']) ?></li>
-        <!-- Hours -->
-        <li><?= $this->Html->link(__('List Hours'), ['controller' => 'Hours', 'action' => 'index']) ?></li>
+        
         <!-- Logout -->
         <li><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
     </ul>
@@ -32,12 +27,12 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($accountants as $accountant): ?>
+            <?php foreach ($divisionDirectors as $divisionDirector): ?>
             <tr>
-                <td><?= h($accountant->email) ?></td>
+                <td><?= h($divisionDirector->email) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $accountant->id]) ?>
-                    <?= $this->Html->link(__('Contact'), ['controller' => 'Requests', 'action' => 'contactAccountant', $accountant->id]) ?>
+                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $divisionDirector->id]) ?>
+                  
                 </td>
             </tr>
             <?php endforeach; ?>
