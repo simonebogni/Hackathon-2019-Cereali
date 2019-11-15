@@ -8,11 +8,9 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <!-- Users actions -->
-        <li><?= $this->Html->link(__('List Companies'), ['controller' => 'Users', 'action' => 'companies']) ?></li>
-        <li><?= $this->Html->link(__('List Employees'), ['controller' => 'Users', 'action' => 'employees']) ?></li>
+        <li><?= $this->Html->link(__('List General Directors'), ['controller' => 'Users', 'action' => 'generalDirectors']) ?></li>
+        <li><?= $this->Html->link(__('List Sellers'), ['controller' => 'Users', 'action' => 'sellers']) ?></li>
         <li><?= $this->Html->link(__('List Division Directors'), ['controller' => 'Users', 'action' => 'divisionDirectors']) ?></li>
-        <!-- Headquarters -->
-        
         <!-- Logout -->
         <li><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
     </ul>

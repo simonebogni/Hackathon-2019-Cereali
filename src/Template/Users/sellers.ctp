@@ -8,16 +8,9 @@
     <ul class="side-nav">
         <li class="heading"><?= __('Actions') ?></li>
         <!-- Users actions -->
-        <li><?= $this->Html->link(__('List Companies'), ['controller' => 'Users', 'action' => 'companies']) ?></li>
-        <li><?= $this->Html->link(__('List Employees'), ['controller' => 'Users', 'action' => 'employees']) ?></li>
-        <li><?= $this->Html->link(__('List Accountants'), ['controller' => 'Users', 'action' => 'accountants']) ?></li>
-        <!-- Headquarters -->
-        <li><?= $this->Html->link(__('List Headquarters'), ['controller' => 'Headquarters', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('Add Headquarter'), ['controller' => 'Headquarters', 'action' => 'add']) ?></li>
-        <!-- Contracts -->
-        <li><?= $this->Html->link(__('List Contracts'), ['controller' => 'Contracts', 'action' => 'index']) ?></li>
-        <!-- Hours -->
-        <li><?= $this->Html->link(__('List Hours'), ['controller' => 'Hours', 'action' => 'index']) ?></li>
+        <li><?= $this->Html->link(__('List General Directors'), ['controller' => 'Users', 'action' => 'generalDirectors']) ?></li>
+        <li><?= $this->Html->link(__('List Sellers'), ['controller' => 'Users', 'action' => 'sellers']) ?></li>
+        <li><?= $this->Html->link(__('List Division Directors'), ['controller' => 'Users', 'action' => 'divisionDirectors']) ?></li>
         <!-- Logout -->
         <li><?= $this->Html->link(__('Logout'), ['controller' => 'Users', 'action' => 'logout']) ?></li>
     </ul>
@@ -32,11 +25,11 @@
             </tr>
         </thead>
         <tbody>
-            <?php foreach ($employees as $employee): ?>
+            <?php foreach ($sellers as $seller): ?>
             <tr>
-                <td><?= h($employee->email) ?></td>
+                <td><?= h($seller->email) ?></td>
                 <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $employee->id]) ?>
+                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $seller->id]) ?>
                 </td>
             </tr>
             <?php endforeach; ?>

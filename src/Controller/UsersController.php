@@ -87,18 +87,18 @@ class UsersController extends AppController
     }
 
     /**
-     * Index method for employee accounts
+     * Index method for seller accounts
      *
      * @return \Cake\Http\Response|void
      */
-    public function employees() {   
-        $employees = $this->Users->find('all', [
+    public function sellers() {   
+        $sellers = $this->Users->find('all', [
             'fields' => ['id','email'],
-            'conditions' => ['Users.role = \'E\'']
+            'conditions' => ['Users.role = \'S\'']
         ]);
 
-        $employees = $this->paginate($employees);
-        $this->set(compact('employees', $employees));
+        $sellers = $this->paginate($sellers);
+        $this->set(compact('sellers', $sellers));
     }
 
     /**
