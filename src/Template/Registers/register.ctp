@@ -16,6 +16,13 @@
     <fieldset>
         <legend><?= __('Sign up') ?></legend>
         <?php
+            ?>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            </div>
+            <?php
             echo $this->Form->control('email');
             echo $this->Form->control('password');
             echo $this->Form->select(
