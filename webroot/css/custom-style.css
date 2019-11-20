@@ -1,0 +1,22 @@
+.header {
+  position: initial;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1002;
+}
+
+#container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#register-container {
+  margin-top: 10%;
+}
+/*# sourceMappingURL=custom-style.css.map */

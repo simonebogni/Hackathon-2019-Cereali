@@ -27,7 +27,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <meta name="keyword" content="Creative, Dashboard, Admin, Template, Theme, Bootstrap, Responsive, Retina, Minimal">
   <link rel="shortcut icon" href="/img/favicon.png">
 
-  <title>Creative - Bootstrap Admin Template</title>
+  <title>SorgoGen - ICT System - Sellers division</title>
 
   <!-- Bootstrap CSS -->
   <link href="/css/bootstrap.min.css" rel="stylesheet">
@@ -58,12 +58,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     Author: BootstrapMade
     Author URL: https://bootstrapmade.com
   ======================================================= -->
+  
+  <link href="/css/custom-style.css" rel="stylesheet">
+  <link href="/css/all.min.css" rel="stylesheet">
+  <!--load all styles -->
 </head>
 
 <body>
   <!-- container section start -->
-  <section id="container" class="">
-
+  <section id="container">
 
     <header class="header dark-bg">
       <div class="toggle-nav">
@@ -71,7 +74,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       </div>
 
       <!--logo start-->
-      <a href="index.html" class="logo">Nice <span class="lite">Admin</span></a>
+      <a href="/users/login" class="logo">Nice <span class="lite">Admin</span></a>
       <!--logo end-->
 
       <div class="nav search-row" id="top_menu">
@@ -326,12 +329,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
       </div>
     </header>
     <!--header end-->
-
-    <?= $this->Flash->render() ?>
-    <?= $this->fetch('content') ?>
-    
+    <div class="content">
+      <?= $this->Flash->render() ?>
+      <?= $this->fetch('content') ?>
+    </div>
   </section>
-  <!-- container section start -->
+
 
   <!-- javascripts -->
   <script src="/js/jquery.js"></script>

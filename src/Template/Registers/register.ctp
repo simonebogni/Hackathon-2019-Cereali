@@ -4,37 +4,41 @@
  * @var \App\Model\Entity\Register $register
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <!-- Login -->
-        <li><?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login']) ?></li>
-    </ul>
-</nav>
-<div class="registers form large-9 medium-8 columns content">
-    <?= $this->Form->create() ?>
-    <fieldset>
-        <legend><?= __('Sign up') ?></legend>
-        <?php
-            ?>
-            <div class="form-group">
-                <label for="email">Email address</label>
-                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+<div class="container" id="register-container">
+    <div class="row justify-content-center">
+        <div class="col col-md-8">
+            <?= $this->Form->create() ?>
+            <fieldset>
+                <legend><?= __('Sign up') ?></legend>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                    <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="role">Role</label>
+                    <select class="form-control" id="role">
+                        <option value="S">Seller</option>
+                        <option value="G">General Director</option>
+                        <option value="D">Division Director</option>
+                    </select>
+                </div>
+            </fieldset>
+            <div class="row">
+                <div class="col-6 offset-6">
+                    <button type="submit" class="btn btn-primary btn-block">Submit</button>
+                </div>
             </div>
-            <?php
-            echo $this->Form->control('email');
-            echo $this->Form->control('password');
-            echo $this->Form->select(
-                'role',
-                [
-                    'S' => 'Seller',
-                    'G' => 'General Director',
-                    'D' => 'Division Director'
-                ]
-            );
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+            <?= $this->Form->end() ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-8 col-md-offset-2 mt-3">
+            <p>To login click here: <?= $this->Html->link(__('Login'), ['controller' => 'Users', 'action' => 'login']) ?></p>
+        </div>
+    </div>
 </div>
