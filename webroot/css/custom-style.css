@@ -62,4 +62,18 @@
 .logo .st1 {
   fill: #008800;
 }
+
+#logo-login {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 15px;
+}
+
+header {
+  border-bottom: none !important;
+}
+
+.caret {
+  display: none;
+}
 /*# sourceMappingURL=custom-style.css.map */
