@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Register $register
  */
 ?>
-<div class="container" id="register-container">
+<div class="container" id="register-container" >
     <div class="row justify-content-center">
         <div class="col col-md-8">
             <?= $this->Form->create() ?>
@@ -28,7 +28,7 @@
                     </select>
                 </div>
             </fieldset>
-            <div class="row">
+            <div class="row" align="">
                 <div class="col-6 offset-6">
                     <button type="submit" class="btn btn-primary btn-block">Submit</button>
                 </div>
