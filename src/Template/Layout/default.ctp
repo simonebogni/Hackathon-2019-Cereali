@@ -290,12 +290,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
           </li>
           <!-- alert notification end-->
           <!-- user login dropdown start-->
+          <?php $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+           $loggedUseremail =  $loggedUser["email"];
+          ?>
           <li class="dropdown">
             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <span class="profile-ava">
-                                <img alt="" src="/img/avatar1_small.jpg">
+                                <img alt="" src="/img/kek.png" width="40" height="40">
                             </span>
-                            <span class="username">Jenifer Smith</span>
+                            <span class="username"><?= $loggedUseremail ?></span>
                             <b class="caret"></b>
                         </a>
             <ul class="dropdown-menu extended logout">
@@ -303,24 +306,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
               <li class="eborder-top">
                 <a href="#"><i class="icon_profile"></i> My Profile</a>
               </li>
-              <li>
-                <a href="#"><i class="icon_mail_alt"></i> My Inbox</a>
-              </li>
-              <li>
-                <a href="#"><i class="icon_clock_alt"></i> Timeline</a>
-              </li>
-              <li>
-                <a href="#"><i class="icon_chat_alt"></i> Chats</a>
-              </li>
-              <li>
-                <a href="login.html"><i class="icon_key_alt"></i> Log Out</a>
-              </li>
-              <li>
-                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-              </li>
-              <li>
-                <a href="documentation.html"><i class="icon_key_alt"></i> Documentation</a>
-              </li>
+             
             </ul>
           </li>
           <!-- user login dropdown end -->
