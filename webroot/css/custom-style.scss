@@ -12,3 +12,28 @@
 #register-container{
     margin-top:10%;
 }
+
+.logo{
+    margin-top: 0px !important;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: start;
+    img{
+        width: 50px;
+        height: 50px;
+        margin-right: 8px;
+    }
+    span{
+        color: darken(#E8D600, 10%) !important;
+        padding-top: 10px;
+        font-weight: initial;
+        &.lite{
+            color: lighten(#008800, 10% )!important;
+            font-weight: bold;
+            font-family: "Georgia", serif;
+        }
+    }
+    .st0{fill:#E8D600;}
+	.st1{fill:#008800;}
+}

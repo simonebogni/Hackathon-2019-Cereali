@@ -19,4 +19,47 @@
 #register-container {
   margin-top: 10%;
 }
+
+.logo {
+  margin-top: 0px !important;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  margin-right: 8px;
+}
+
+.logo span {
+  color: #b5a700 !important;
+  padding-top: 10px;
+  font-weight: initial;
+}
+
+.logo span.lite {
+  color: #00bb00 !important;
+  font-weight: bold;
+  font-family: "Georgia", serif;
+}
+
+.logo .st0 {
+  fill: #E8D600;
+}
+
+.logo .st1 {
+  fill: #008800;
+}
 /*# sourceMappingURL=custom-style.css.map */
