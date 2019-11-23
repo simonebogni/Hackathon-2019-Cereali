@@ -22,6 +22,6 @@ class Configuration extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true
+        'note' => true
     ];
 }

@@ -23,7 +23,11 @@ class UsersTableTest extends TestCase
      * @var array
      */
     public $fixtures = [
-        'app.Users'
+        'app.Users',
+        'app.Roles',
+        'app.Headquarters',
+        'app.Hours',
+        'app.ShockReports'
     ];
 
     /**
@@ -66,6 +70,16 @@ class UsersTableTest extends TestCase
      * @return void
      */
     public function testValidationDefault()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
+     * Test buildRules method
+     *
+     * @return void
+     */
+    public function testBuildRules()
     {
         $this->markTestIncomplete('Not implemented yet.');
     }

@@ -5,7 +5,6 @@ use Cake\ORM\Query;
 use Cake\ORM\RulesChecker;
 use Cake\ORM\Table;
 use Cake\Validation\Validator;
-use Cake\Event\Event;
 
 /**
  * Headquarters Model
@@ -41,15 +40,6 @@ class HeadquartersTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER'
         ]);
-    }
-
-    public function beforeFilter(Event $event)
-    {
-        $this->Auth->deny('add');
-        // allow only login, forgotpassword
-        if($user->role === 'A') {
-            $this->Auth->allow(['add']);
-        }
     }
 
     /**

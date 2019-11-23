@@ -50,3 +50,29 @@ header{
 .caret{
     display: none;
 }
+
+#sidebar{
+    margin-left: -15px !important;
+}
+
+.sidebar-closed > #sidebar > ul {
+
+    display: none;
+
+}
+
+
+
+.sidebar-closed #main-content {
+
+    margin-left: 0px;
+
+}
+
+
+
+.sidebar-closed #sidebar {
+
+    margin-left: -195px !important;
+
+}

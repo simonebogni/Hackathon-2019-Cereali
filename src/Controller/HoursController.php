@@ -23,70 +23,91 @@ class HoursController extends AppController
             'contain' => ['Users', 'Headquarters']
         ];
         $hours = $this->paginate($this->Hours);
+
         $this->set(compact('hours'));
     }
-    
+
     /**
-     * Check method
+     * View method
      *
-     * @return \Cake\Http\Response|void Redirect to index
+     * @param string|null $id Hour id.
+     * @return \Cake\Http\Response|void
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
-    public function check() {
-        // pick user id from Auth
-        $user = $this->Auth->user();
-        // pick headquarter_id and type from the GET call
-        $headquarter_id = $this->request->getQuery('headquarter_id');
-        $type = $this->request->getQuery('type');
-        // if IN type check
-        if($type === 'IN') {
-            // create a new hour entity
-            $hour = $this->Hours->newEntity([
-                'user_id' => $user['id'],
-                'headquarter_id' => $headquarter_id,
-                'go_in' => date('Y/m/d H:i:s')
-            ]);
-            // and try to save it
-            if($this->Hours->save($hour)) {
-                $this->Flash->success(__("Check in validated."));
-            } else {
-                $this->Flash->success(__("A problem occured."));
-            }
-        } else  if($type === 'OUT') {
-        // if OUT type check
-            // pick the already created row in the db
-            $hour = $this->Hours->find('all')
-                ->where([
-                    'user_id =' => $user['id'],
-                    'DATE(go_in) =' => date('Y/m/d') 
-                ])
-                ->first();
-            // set the current time as check go_out hour
-            $hour->go_out = date('Y/m/d H:i:s');
-            // try to save the updated row
-            if($this->Hours->save($hour)) {
-                $this->Flash->success(__("Check out validated."));
-            } else {
-                $this->Flash->success(__("A problem occured."));
-            }
-        }
-        // in every case, redirect to homepage
-        return $this->redirect($this->Auth->redirectUrl());
+    public function view($id = null)
+    {
+        $hour = $this->Hours->get($id, [
+            'contain' => ['Users', 'Headquarters']
+        ]);
+
+        $this->set('hour', $hour);
     }
 
     /**
-     * isAuthorized method
+     * Add method
      *
-     * @param $user the user object
-     * @return true if a user is allowed to acess, otherwise false
+     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function isAuthorized($user) {
-        // employeer can access to hours actions
-        
-        if ($user['role'] === 'E') {
-            return true;
+    public function add()
+    {
+        $hour = $this->Hours->newEntity();
+        if ($this->request->is('post')) {
+            $hour = $this->Hours->patchEntity($hour, $this->request->getData());
+            if ($this->Hours->save($hour)) {
+                $this->Flash->success(__('The hour has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The hour could not be saved. Please, try again.'));
+        }
+        $users = $this->Hours->Users->find('list', ['limit' => 200]);
+        $headquarters = $this->Hours->Headquarters->find('list', ['limit' => 200]);
+        $this->set(compact('hour', 'users', 'headquarters'));
+    }
+
+    /**
+     * Edit method
+     *
+     * @param string|null $id Hour id.
+     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function edit($id = null)
+    {
+        $hour = $this->Hours->get($id, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $hour = $this->Hours->patchEntity($hour, $this->request->getData());
+            if ($this->Hours->save($hour)) {
+                $this->Flash->success(__('The hour has been saved.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('The hour could not be saved. Please, try again.'));
+        }
+        $users = $this->Hours->Users->find('list', ['limit' => 200]);
+        $headquarters = $this->Hours->Headquarters->find('list', ['limit' => 200]);
+        $this->set(compact('hour', 'users', 'headquarters'));
+    }
+
+    /**
+     * Delete method
+     *
+     * @param string|null $id Hour id.
+     * @return \Cake\Http\Response|null Redirects to index.
+     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
+     */
+    public function delete($id = null)
+    {
+        $this->request->allowMethod(['post', 'delete']);
+        $hour = $this->Hours->get($id);
+        if ($this->Hours->delete($hour)) {
+            $this->Flash->success(__('The hour has been deleted.'));
+        } else {
+            $this->Flash->error(__('The hour could not be deleted. Please, try again.'));
         }
 
-        // Default deny
-        return true;
+        return $this->redirect(['action' => 'index']);
     }
 }

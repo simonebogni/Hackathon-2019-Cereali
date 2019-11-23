@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * @property int $user_id
  * @property int $headquarter_id
  * @property \Cake\I18n\FrozenTime $go_in
- * @property \Cake\I18n\FrozenTime $go_out
+ * @property \Cake\I18n\FrozenTime|null $go_out
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Headquarters $headquarters
@@ -27,10 +27,8 @@ class Hour extends Entity
      */
     protected $_accessible = [
         'headquarter_id' => true,
-        'go_in' => true,
         'go_out' => true,
-        'user_id' => true,
-        'users' => true,
+        'user' => true,
         'headquarters' => true
     ];
 }

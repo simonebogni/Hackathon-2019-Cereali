@@ -37,7 +37,7 @@ class RegistersFixture extends TestFixture
     {
         $this->records = [
             [
-                'email' => 'fe03dcb3-e712-4c11-aa9d-71b7c81ac191',
+                'email' => '4ebe4d7d-5c24-4019-bbdf-f01e3f412d2f',
                 'password' => 'Lorem ipsum dolor sit amet',
                 'role' => 'L'
             ],

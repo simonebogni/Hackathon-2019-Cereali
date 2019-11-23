@@ -62,6 +62,16 @@ class HeadquartersTableTest extends TestCase
     }
 
     /**
+     * Test beforeFilter method
+     *
+     * @return void
+     */
+    public function testBeforeFilter()
+    {
+        $this->markTestIncomplete('Not implemented yet.');
+    }
+
+    /**
      * Test validationDefault method
      *
      * @return void

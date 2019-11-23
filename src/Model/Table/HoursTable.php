@@ -61,7 +61,7 @@ class HoursTable extends Table
 
         $validator
             ->dateTime('go_out')
-            ->allowEmptyDateTime('go_out', true);
+            ->allowEmptyDateTime('go_out');
 
         return $validator;
     }

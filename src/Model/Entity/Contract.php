@@ -23,10 +23,6 @@ class Contract extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => true
+        'user' => true
     ];
-
-    public function initialize() {
-        $this->primaryKey(['accountant_id','company_id']);
-    }
 }

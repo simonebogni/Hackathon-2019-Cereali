@@ -18,7 +18,7 @@ class HoursFixture extends TestFixture
         'user_id' => ['type' => 'biginteger', 'length' => 20, 'unsigned' => true, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'headquarter_id' => ['type' => 'biginteger', 'length' => 20, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'go_in' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => '0000-00-00 00:00:00', 'comment' => '', 'precision' => null],
-        'go_out' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null],
+        'go_out' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
             'headquarter_key' => ['type' => 'index', 'columns' => ['headquarter_id'], 'length' => []],
         ],
@@ -44,8 +44,8 @@ class HoursFixture extends TestFixture
             [
                 'user_id' => 1,
                 'headquarter_id' => 1,
-                'go_in' => '2019-04-16 07:32:32',
-                'go_out' => '2019-04-16 07:32:32'
+                'go_in' => '2019-11-22 12:44:43',
+                'go_out' => '2019-11-22 12:44:43'
             ],
         ];
         parent::init();

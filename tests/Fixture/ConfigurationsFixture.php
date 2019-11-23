@@ -36,8 +36,8 @@ class ConfigurationsFixture extends TestFixture
     {
         $this->records = [
             [
-                'item_key' => '43cce3fe-5225-4c07-b45d-7908bfd1cd32',
-                'item_value' => '73c2da3d-c95b-44d7-888d-c930998e809c',
+                'item_key' => 'e45a0e18-7df8-46d7-9cc6-ffeef8b36edf',
+                'item_value' => 'eab2d957-36af-40dd-ab94-95bb1d611439',
                 'note' => 'Lorem ipsum dolor sit amet'
             ],
         ];

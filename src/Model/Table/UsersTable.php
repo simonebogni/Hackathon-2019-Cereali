@@ -9,8 +9,10 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
- * @property |\Cake\ORM\Association\HasMany $Headquarters
- * @property |\Cake\ORM\Association\HasMany $Hours
+ * @property \App\Model\Table\RolesTable|\Cake\ORM\Association\BelongsTo $Roles
+ * @property \App\Model\Table\HeadquartersTable|\Cake\ORM\Association\HasMany $Headquarters
+ * @property \App\Model\Table\HoursTable|\Cake\ORM\Association\HasMany $Hours
+ * @property \App\Model\Table\ShockReportsTable|\Cake\ORM\Association\HasMany $ShockReports
  *
  * @method \App\Model\Entity\User get($primaryKey, $options = [])
  * @method \App\Model\Entity\User newEntity($data = null, array $options = [])
@@ -37,10 +39,17 @@ class UsersTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
+        $this->belongsTo('Roles', [
+            'foreignKey' => 'role_id',
+            'joinType' => 'INNER'
+        ]);
         $this->hasMany('Headquarters', [
             'foreignKey' => 'user_id'
         ]);
         $this->hasMany('Hours', [
+            'foreignKey' => 'user_id'
+        ]);
+        $this->hasMany('ShockReports', [
             'foreignKey' => 'user_id'
         ]);
     }
@@ -69,10 +78,10 @@ class UsersTable extends Table
             ->allowEmptyString('password', false);
 
         $validator
-            ->scalar('role')
-            ->maxLength('role', 1)
-            ->requirePresence('role', 'create')
-            ->allowEmptyString('role', false);
+            ->scalar('city')
+            ->maxLength('city', 255)
+            ->requirePresence('city', 'create')
+            ->allowEmptyString('city', false);
 
         return $validator;
     }
@@ -87,6 +96,7 @@ class UsersTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->isUnique(['email']));
+        $rules->add($rules->existsIn(['role_id'], 'Roles'));
 
         return $rules;
     }

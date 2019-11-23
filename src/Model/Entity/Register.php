@@ -2,7 +2,6 @@
 namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
-use Cake\Auth\DefaultPasswordHasher;
 
 /**
  * Register Entity
@@ -23,8 +22,6 @@ class Register extends Entity
      * @var array
      */
     protected $_accessible = [
-        '*' => false,
-        'email' => true,
         'password' => true,
         'role' => true
     ];
@@ -37,14 +34,4 @@ class Register extends Entity
     protected $_hidden = [
         'password'
     ];
-
-    /**
-     * Hashing password method
-     */
-    protected function _setPassword($value) {
-        if (strlen($value)) {
-            $hasher = new DefaultPasswordHasher();
-            return $hasher->hash($value);
-        }
-    }
 }
