@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 22, 2019 at 12:28 AM
+-- Generation Time: Nov 24, 2019 at 03:43 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -261,6 +261,17 @@ CREATE TABLE `shock_reports` (
   `user_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `shock_reports`
+--
+
+INSERT INTO `shock_reports` (`id`, `shock_type_id`, `shock_type_other`, `damage_amount`, `user_id`) VALUES
+(1, NULL, 'Prova', '2000.00', 9),
+(2, 5, '', '10000.00', 11),
+(3, 5, '', '20000.00', 11),
+(4, NULL, 'Prova', '0.00', 11),
+(5, NULL, 'Prova', '0.00', 11);
+
 -- --------------------------------------------------------
 
 --
@@ -470,7 +481,7 @@ ALTER TABLE `product_batch_partitions`
 -- AUTO_INCREMENT for table `shock_reports`
 --
 ALTER TABLE `shock_reports`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `shock_types`
