@@ -31,7 +31,7 @@ var CKBUILDER_CONFIG = {
 		'clipboard' : 1,
 		'contextmenu' : 1,
 		'resize' : 1,
-		'toolbar' : 0,
+		'toolbar' : 1,
 		'elementspath' : 1,
 		'enterkey' : 1,
 		'entities' : 1,

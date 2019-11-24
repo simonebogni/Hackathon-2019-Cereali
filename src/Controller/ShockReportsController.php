@@ -53,12 +53,19 @@ class ShockReportsController extends AppController
         $shockReport = $this->ShockReports->newEntity();
         if ($this->request->is('post')) {
             $shockReport = $this->ShockReports->patchEntity($shockReport, $this->request->getData());
-            if ($this->ShockReports->save($shockReport)) {
-                $this->Flash->success(__('The shock report has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            if($shockReport->shock_type_id == null && ($shockReport->shock_type_other == null || trim($shockReport->shock_type_other) == "")){
+                $this->Flash->error(__('Sorry, we couldn\'t save the shock report. Either one field between "shock type" and "other specification" must be filled.'));  
+            } else {
+                if($shockReport->shock_type_id != null){
+                    $shockReport->shock_type_other = "";
+                }
+                if ($this->ShockReports->save($shockReport)) {
+                    $this->Flash->success(__('The shock report has been saved.'));
+                    $id = $shockReport->user_id;
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The shock report could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The shock report could not be saved. Please, try again.'));
         }
         $shockTypes = $this->ShockReports->ShockTypes->find('list', ['limit' => 200]);
         $users = $this->ShockReports->Users->find('list', ['limit' => 200]);
@@ -79,12 +86,21 @@ class ShockReportsController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $shockReport = $this->ShockReports->patchEntity($shockReport, $this->request->getData());
-            if ($this->ShockReports->save($shockReport)) {
-                $this->Flash->success(__('The shock report has been saved.'));
-
-                return $this->redirect(['action' => 'index']);
+            
+            if($shockReport->shock_type_id == null && ($shockReport->shock_type_other == null || trim($shockReport->shock_type_other) == "")){
+                $this->Flash->error(__('Sorry, we couldn\'t save the shock report. Either one field between "shock type" and "other specification" must be filled.'));  
+            } else {
+                if($shockReport->shock_type_id != null){
+                    $shockReport->shock_type_other = "";
+                }
+                if ($this->ShockReports->save($shockReport)) {
+                    $this->Flash->success(__('The shock report has been saved.'));
+                    $id = $shockReport->user_id;
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('The shock report could not be saved. Please, try again.'));
             }
-            $this->Flash->error(__('The shock report could not be saved. Please, try again.'));
+            
         }
         $shockTypes = $this->ShockReports->ShockTypes->find('list', ['limit' => 200]);
         $users = $this->ShockReports->Users->find('list', ['limit' => 200]);
