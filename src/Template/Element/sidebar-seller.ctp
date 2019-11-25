@@ -9,22 +9,27 @@
               <span>Dashboard - Seller</span>
             </a>
           </li>
+           <li class="sub-menu">
+            <a href="javascript:;" class="">
+                          <i class="icon_document_alt"></i>
+                          <span>Forms</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub">
+              <li><a class="" href="form_component.html">View pending Form </a></li>
+               <li><a class="" href="form_validation.html">Send Form</a></li> 
+            </ul>
+          </li>
           <li class="sub-menu">
-            <a href="javascript:fas fa-exclamation-triangle;" class="">
-              <i class="icon_document_alt"></i>
-              <span>Forms</span>
+            <a class=""a href="javascript:fas fa-exclamation-triangle;">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span> Problem</span>
               <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
-              <li><a class="" href="form_component.html">View pending Form</a></li>
-              <li><a class="" href="form_validation.html">Send Form</a></li>
+              <li><a class="" href="/shock-reports/add">Report a Problem</a></li>
+              <li><a class=""  href="/shock-reports/index_seller">My Problems</a></li>
             </ul>
-          </li>
-          <li>
-            <a class="" href="/shock-reports/index">
-              <i class="fas fa-exclamation-triangle"></i>
-              <span>Report a Problem</span>
-            </a>
           </li>
           <li>
             <a class="" href="/users/logout">

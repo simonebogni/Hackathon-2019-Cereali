@@ -20,11 +20,28 @@
                <!--<li><a class="" href="form_validation.html">Send Form</a></li> -->
             </ul>
           </li>
+           <li class="sub-menu">
+            <a  href="javascript:fas fa-exclamation-triangle;" class="">
+                          <i class="fas fa-exclamation-triangle"></i>
+                          <span>Problems</span>
+                          <span class="menu-arrow arrow_carrot-right"></span>
+                      </a>
+            <ul class="sub">
+              <li><a class=""  href="/shock-reports/index">View Problems </a></li>
+               <!--<li><a class="" href="form_validation.html">Send Form</a></li> -->
+            </ul>
+          </li>
           
           <li>
             <a class="" href="widgets.html">
                           <i class="fas fa-chart-line"></i>
                           <span>Generate Report</span>
+                      </a>
+          </li>
+           <li>
+            <a class="" href="/users/add">
+                          <i class="fas fa-users"></i>
+                          <span>Add User</span>
                       </a>
           </li>
           <li>

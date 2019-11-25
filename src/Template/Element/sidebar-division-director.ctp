@@ -22,7 +22,7 @@
           </li>
           
           <li>
-            <a class="" href="widgets.html">
+            <a class="" href="/shock-reports/add">
                           <i class="fas fa-exclamation-triangle"></i>
                           <span>Report a Problem</span>
                       </a>
