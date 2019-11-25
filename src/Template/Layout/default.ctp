@@ -30,6 +30,10 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <link href="/css/bootstrap.min.css" rel="stylesheet">
   <!-- bootstrap theme -->
   <link href="/css/bootstrap-theme.css" rel="stylesheet">
+
+  <!-- Britecharts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/britecharts/dist/css/britecharts.min.css" type="text/css" />
+  
   <!--external css-->
   <!-- font icon -->
   <link href="/css/elegant-icons-style.css" rel="stylesheet" />
@@ -62,6 +66,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 
 <body>
+  <!--Brite charts-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-selection/1.2.0/d3-selection.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/britecharts@2/dist/bundled/britecharts.min.js" type="text/javascript"></script>
   <!-- container section start -->
   <section id="container">
 
@@ -101,6 +108,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
   <script type="text/javascript" src="/js/jquery-ui-1.9.2.custom.min.js"></script>
   <!-- bootstrap -->
   <script src="/js/bootstrap.min.js"></script>
+
   <!-- nice scroll -->
   <script src="/js/jquery.scrollTo.min.js"></script>
   <script src="/js/jquery.nicescroll.js" type="text/javascript"></script>

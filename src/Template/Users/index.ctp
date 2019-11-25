@@ -10,7 +10,7 @@
         <?= $this->element("sidebar");?>
         </div>
         <div class="col-md-8">
-            <div class="row">
+            <div class="row firstPageElement">
                 <div class="col justify-content-center">
                     <h3><?= __('Users') ?></h3>
                 </div>

@@ -10,7 +10,7 @@
             <?= $this->element("sidebar");?>
         </div>
         <div class="col-md-8">
-            <div class="row">
+            <div class="row firstPageElement">
                 <div class="col">
                     <h3><?= h($user->id) ?></h3>
                 </div>

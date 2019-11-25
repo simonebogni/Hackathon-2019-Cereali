@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 24, 2019 at 03:43 PM
+-- Generation Time: Nov 25, 2019 at 01:01 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -270,7 +270,8 @@ INSERT INTO `shock_reports` (`id`, `shock_type_id`, `shock_type_other`, `damage_
 (2, 5, '', '10000.00', 11),
 (3, 5, '', '20000.00', 11),
 (4, NULL, 'Prova', '0.00', 11),
-(5, NULL, 'Prova', '0.00', 11);
+(5, NULL, 'Prova', '0.00', 11),
+(6, 4, '', '5000.00', 9);
 
 -- --------------------------------------------------------
 
@@ -481,7 +482,7 @@ ALTER TABLE `product_batch_partitions`
 -- AUTO_INCREMENT for table `shock_reports`
 --
 ALTER TABLE `shock_reports`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `shock_types`

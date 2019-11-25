@@ -1,8 +1,8 @@
 .header {
-  position: initial;
+  border-bottom: none !important;
+  position: fixed;
   top: 0;
-  left: 0;
-  right: 0;
+  width: 100%;
   z-index: 1002;
 }
 
@@ -14,6 +14,10 @@
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+}
+
+.firstPageElement {
+  margin-top: 100px;
 }
 
 #register-container {
@@ -67,10 +71,6 @@
   width: 80px;
   height: 80px;
   margin-bottom: 15px;
-}
-
-header {
-  border-bottom: none !important;
 }
 
 .caret {

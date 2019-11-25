@@ -12,7 +12,7 @@ $loggedUserId = $loggedUser["id"]
             <?= $this->element("sidebar")?>
         </div>
         <div class="col-md-8">
-            <div class="row mt-5">
+            <div class="row firstPageElement">
                 <div class="col">
                     <?= $this->Form->create($shockReport) ?>
                         <div class="row">

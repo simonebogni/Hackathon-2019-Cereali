@@ -27,6 +27,18 @@ class ShockReportsController extends AppController
         $this->set(compact('shockReports'));
     }
 
+    public function indexSeller()
+    {
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $this->paginate = [
+            'contain' => ['ShockTypes', 'Users'],
+            'conditions' => ['Users.id LIKE' => $loggedUser["id"]]
+        ];
+        $shockReports = $this->paginate($this->ShockReports);
+
+        $this->set(compact('shockReports'));
+    }
+
     /**
      * View method
      *
