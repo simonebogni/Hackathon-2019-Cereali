@@ -28,6 +28,12 @@
                       </a>
           </li>
           <li>
+            <a class="" href="/users/add">
+                          <i class="fas fa-users"></i>
+                          <span>Add Seller</span>
+                      </a>
+          </li>
+          <li>
             <a class="" href="/users/logout">
               <i class="fas fa-sign-out-alt"></i>
               <span>Logout</span>
