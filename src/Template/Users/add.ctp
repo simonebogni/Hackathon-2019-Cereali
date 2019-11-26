@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\User $user
  */ $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
     $loggedUserId = $loggedUser["id"]
+    
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -59,6 +60,11 @@
                                             ?>
                                         </select>
                                     </div>
+                                   
+
+                                    
+
+                                   
                                     <div class="form-group">
                                         <!-- da fixxareeeeeeeeeeee-->
                                         <?= $this->Form->hidden('user_id', ["value"=>$loggedUserId]);?>

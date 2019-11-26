@@ -41,7 +41,7 @@
            <li>
             <a class="" href="/users/add">
                           <i class="fas fa-users"></i>
-                          <span>Add User</span>
+                          <span>Add Division-Director</span>
                       </a>
           </li>
           <li>
