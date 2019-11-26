@@ -1,7 +1,7 @@
 <?php
 /**
  * @var \App\View\AppView $this
- * @var \App\Model\Entity\Product $product
+ * @var \App\Model\Entity\User $user
  */ $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
     $loggedUserId = $loggedUser["id"]
 ?>
@@ -28,7 +28,36 @@
                                         <?= $this->Form->control('city', ['class'=>'form-control']);?>
                                     </div>
                                     <div class="form-group">
-                                        <?=  $this->Form->control('role_id', ['class'=>'form-control']);?>
+                                        <label for="role_id">Role</label>
+                                        <select class="form-control" id="role_id">
+                                            <?php
+                                            switch(substr($loggedUser["role_id"], 0, 1)){
+                                                case "G":
+                                                    foreach($roles as $role){
+                                                        if($role["role_type_id"] == "D" && $role["department_id"] == substr($loggedUser["role_id"], 1, 1)){
+                                                            ?>
+                                                            <option value="<?= $role["id"]?>"><?= $role["name"]?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    break;
+                                                case "D":
+                                                    foreach($roles as $role){
+                                                        if($role["role_type_id"] == "S" && $role["product_area_id"] == substr($loggedUser["role_id"], 2, 1) && $role["department_id"] == substr($loggedUser["role_id"], 1, 1)){
+                                                            ?>
+                                                            <option value="<?= $role->id?>"><?= $role->name?></option>
+                                                            <?php
+                                                        }
+                                                    }
+                                                    break;
+                                                default:
+                                                    ?>
+                                                    <option value=""></option>
+                                                    <?php
+                                                    break;
+                                            }
+                                            ?>
+                                        </select>
                                     </div>
                                     <div class="form-group">
                                         <!-- da fixxareeeeeeeeeeee-->

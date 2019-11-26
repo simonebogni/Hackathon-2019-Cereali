@@ -34,6 +34,14 @@
                             <th scope="row"><?= __('Damage Amount') ?></th>
                             <td><?= $this->Number->currency($shockReport->damage_amount) ?></td>
                         </tr>
+                        <tr>
+                            <th scope="row"><?= __('Created Date') ?></th>
+                            <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
+                        </tr>
+                        <tr>
+                            <th scope="row"><?= __('Processed Date') ?></th>
+                            <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
+                        </tr>
                     </table>
                 </div>
             </div>

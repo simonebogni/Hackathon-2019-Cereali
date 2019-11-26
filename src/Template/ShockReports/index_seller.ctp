@@ -26,6 +26,7 @@
                                 <th scope="col"><?= $this->Paginator->sort('Other specification') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('damage_amount') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                                <th scope="col"><?= $this->Paginator->sort('created_date') ?></th>
                                 <th scope="col" class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                 <td><?= h($shockReport->shock_type_other) ?></td>
                                 <td><?= $this->Number->currency($shockReport->damage_amount) ?></td>
                                 <td><?= $shockReport->has('user') ? $this->Html->link($shockReport->user->email, ['controller' => 'Users', 'action' => 'view', $shockReport->user->id]) : '' ?></td>
+                                <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
                                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
@@ -81,14 +83,32 @@
         ?>;
         let index = 1;
         let newDataset = [];
-        console.log(originalDataset);
+        //crea il nuovo dataset condensando i tipi di shock
         originalDataset.forEach(element => {
-            let newElement = {
-                quantity: element["damage_amount"],
-                name: element["shock_type"]==null ? "Other" : element["shock_type"]["name"],
-                id: index++
+            oldElementDamageAmount = element["damage_amount"];
+            oldElementType = element["shock_type"]==null ? "Other" : element["shock_type"]["name"];
+
+            if(newDataset.some(newElement=>newElement["shock_type"] == oldElementType)){
+                newDataset.forEach(el=>{
+                    if(el.name == oldElementType){
+                        el.quantity += oldElementDamageAmount;
+                    }
+                });
+            } else {
+                newDataset.push({
+                    quantity: oldElementDamageAmount,
+                    name: oldElementType
+                });
             }
-            newDataset.push(newElement);
+        });
+        //ordina in ordine decrescente per quantità
+        newDataset.sort((a, b)=>{
+            return a.quantity < b.quantity ? 1 : 
+                a.quantity > b.quantity ? -1 : 0;
+        });
+        //assegna l'id in modo crescente
+        newDataset.forEach(el=>{
+            el["id"] = index++;
         });
         if(newDataset.length > 0){
             let donutContainer = d3.select("#yourShockReportsPieChartContainer");

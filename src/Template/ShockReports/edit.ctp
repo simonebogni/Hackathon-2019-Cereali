@@ -28,9 +28,11 @@ $loggedUserId = $loggedUser["id"]
                                     <div class="form-group">
                                         <?= $this->Form->control('damage_amount', ['class'=>'form-control', 'step'=>'100.00']);?>
                                     </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->hidden('user_id', ["value"=>$loggedUserId]);?>
-                                    </div>
+                                    <?php
+                                        echo $this->Form->hidden('user_id', ["value"=>$loggedUserId]);
+                                        echo $this->Form->hidden('created_date', ['value' => $shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')]);
+                                        echo $this->Form->hidden('processed_date', ['value' => $shockReport->processed_date]);
+                                    ?>
                                 </fieldset>
                             </div>
                         </div>

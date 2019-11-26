@@ -68,6 +68,8 @@ class ShockReportsController extends AppController
             if($shockReport->shock_type_id == null && ($shockReport->shock_type_other == null || trim($shockReport->shock_type_other) == "")){
                 $this->Flash->error(__('Sorry, we couldn\'t save the shock report. Either one field between "shock type" and "other specification" must be filled.'));  
             } else {
+                $shockReport->created_date = null;
+                $shockReport->processed_date = null;
                 if($shockReport->shock_type_id != null){
                     $shockReport->shock_type_other = "";
                 }
@@ -102,6 +104,8 @@ class ShockReportsController extends AppController
             if($shockReport->shock_type_id == null && ($shockReport->shock_type_other == null || trim($shockReport->shock_type_other) == "")){
                 $this->Flash->error(__('Sorry, we couldn\'t save the shock report. Either one field between "shock type" and "other specification" must be filled.'));  
             } else {
+                //$shockReport->created_date = null;
+                //$shockReport->processed_date = null;
                 if($shockReport->shock_type_id != null){
                     $shockReport->shock_type_other = "";
                 }

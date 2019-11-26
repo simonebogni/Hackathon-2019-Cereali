@@ -113,6 +113,12 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        if(substr($loggedUserRoleId, 0, 1) == "S"){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            return $this->redirect(['action' => 'index']);
+        }
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -123,7 +129,7 @@ class UsersController extends AppController
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
-        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
+        $roles = $this->Users->Roles->find('all');
         $this->set(compact('user', 'roles'));
     }
 

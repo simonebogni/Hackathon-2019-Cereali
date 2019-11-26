@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2019 at 01:01 PM
+-- Generation Time: Nov 26, 2019 at 11:49 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -258,20 +258,25 @@ CREATE TABLE `shock_reports` (
   `shock_type_id` bigint(20) DEFAULT NULL,
   `shock_type_other` varchar(255) DEFAULT NULL,
   `damage_amount` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `user_id` bigint(20) UNSIGNED NOT NULL
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `created_date` datetime DEFAULT current_timestamp(),
+  `processed_date` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shock_reports`
 --
 
-INSERT INTO `shock_reports` (`id`, `shock_type_id`, `shock_type_other`, `damage_amount`, `user_id`) VALUES
-(1, NULL, 'Prova', '2000.00', 9),
-(2, 5, '', '10000.00', 11),
-(3, 5, '', '20000.00', 11),
-(4, NULL, 'Prova', '0.00', 11),
-(5, NULL, 'Prova', '0.00', 11),
-(6, 4, '', '5000.00', 9);
+INSERT INTO `shock_reports` (`id`, `shock_type_id`, `shock_type_other`, `damage_amount`, `user_id`, `created_date`, `processed_date`) VALUES
+(1, NULL, 'Blackout', '2100.00', 9, '2019-11-26 18:25:41', NULL),
+(2, 5, '', '10000.00', 11, '2019-11-26 18:25:41', NULL),
+(3, 5, '', '20000.00', 11, '2019-11-26 18:25:41', NULL),
+(4, NULL, 'Prova', '0.00', 11, '2019-11-26 18:25:41', NULL),
+(5, NULL, 'Prova', '0.00', 11, '2019-11-26 18:25:41', NULL),
+(6, 4, '', '5000.00', 9, '2019-11-26 18:25:41', NULL),
+(7, 4, '', '0.00', 6, '2019-11-26 21:08:29', NULL),
+(8, 2, '', '10.00', 6, '2019-11-26 21:11:25', NULL),
+(9, 3, '', '500.00', 9, '2019-11-26 21:20:17', NULL);
 
 -- --------------------------------------------------------
 
@@ -324,7 +329,8 @@ INSERT INTO `users` (`id`, `email`, `password`, `city`, `role_id`) VALUES
 (9, 'sa1@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Milano', 'S3A'),
 (10, 'sa2@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Bologna', 'S3A'),
 (11, 'sb1@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Roma', 'S3B'),
-(12, 'sc1@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Bologna', 'S3C');
+(12, 'sc1@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Bologna', 'S3C'),
+(13, 'sa5@cerealgreen.com', '$2y$10$AlhVJ6EQ.2YlgNoTIhRjfu1uc2Poi0ZrZcIIiPaO5gTmzN/QP30Gi', 'Roma', 'S3A');
 
 --
 -- Indexes for dumped tables
@@ -482,7 +488,7 @@ ALTER TABLE `product_batch_partitions`
 -- AUTO_INCREMENT for table `shock_reports`
 --
 ALTER TABLE `shock_reports`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `shock_types`
@@ -494,7 +500,7 @@ ALTER TABLE `shock_types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- Constraints for dumped tables

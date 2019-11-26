@@ -20,6 +20,8 @@ class ShockReportsFixture extends TestFixture
         'shock_type_other' => ['type' => 'string', 'length' => 255, 'null' => true, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
         'damage_amount' => ['type' => 'decimal', 'length' => 10, 'precision' => 2, 'unsigned' => false, 'null' => false, 'default' => '0.00', 'comment' => ''],
         'user_id' => ['type' => 'biginteger', 'length' => 20, 'unsigned' => true, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'created_date' => ['type' => 'datetime', 'length' => null, 'null' => false, 'default' => 'current_timestamp()', 'comment' => '', 'precision' => null],
+        'processed_date' => ['type' => 'datetime', 'length' => null, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null],
         '_indexes' => [
             'shock_type_id' => ['type' => 'index', 'columns' => ['shock_type_id'], 'length' => []],
             'user_id' => ['type' => 'index', 'columns' => ['user_id'], 'length' => []],
@@ -48,7 +50,9 @@ class ShockReportsFixture extends TestFixture
                 'shock_type_id' => 1,
                 'shock_type_other' => 'Lorem ipsum dolor sit amet',
                 'damage_amount' => 1.5,
-                'user_id' => 1
+                'user_id' => 1,
+                'created_date' => '2019-11-26 18:27:41',
+                'processed_date' => '2019-11-26 18:27:41'
             ],
         ];
         parent::init();

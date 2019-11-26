@@ -26,6 +26,7 @@
                                 <th scope="col"><?= $this->Paginator->sort('Other specification') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('damage_amount') ?></th>
                                 <th scope="col"><?= $this->Paginator->sort('user_id') ?></th>
+                                <th scope="col"><?= $this->Paginator->sort('created_date') ?></th>
                                 <th scope="col" class="actions"><?= __('Actions') ?></th>
                             </tr>
                         </thead>
@@ -37,6 +38,7 @@
                                 <td><?= h($shockReport->shock_type_other) ?></td>
                                 <td><?= $this->Number->currency($shockReport->damage_amount) ?></td>
                                 <td><?= $shockReport->has('user') ? $this->Html->link($shockReport->user->email, ['controller' => 'Users', 'action' => 'view', $shockReport->user->id]) : '' ?></td>
+                                <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
                                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>

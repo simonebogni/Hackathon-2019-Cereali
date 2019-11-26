@@ -67,6 +67,15 @@ class ShockReportsTable extends Table
             ->requirePresence('damage_amount', 'create')
             ->allowEmptyString('damage_amount', false);
 
+        $validator
+            ->dateTime('created_date')
+            ->requirePresence('created_date', 'create')
+            ->allowEmptyDateTime('created_date', false);
+
+        $validator
+            ->dateTime('processed_date')
+            ->allowEmptyDateTime('processed_date');
+
         return $validator;
     }
 
