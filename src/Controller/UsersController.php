@@ -80,6 +80,21 @@ class UsersController extends AppController
      * @return \Cake\Http\Response|void
      */
     public function index() {  
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        switch($loggedUserRoleLetter){
+            case "G":
+                return $this->redirect(['action' => 'indexGeneralDirector']);
+                break;
+            case "D":
+                return $this->redirect(['action' => 'indexDivisionDirector']);
+                break;
+            case "S":
+                return $this->redirect(['action' => 'indexSeller']);
+                break;
+            default:
+        }
         $users = $this->Users->find('all', [
             'fields' => ['id','email', 'city'],
             'conditions' => ['Users.role_id LIKE \'S%\'']
@@ -89,6 +104,151 @@ class UsersController extends AppController
         $this->set(compact('users', $users));
     }
 
+    public function indexSeller() {  
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserDept = substr($loggedUser["role_id"], 1, 1);
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        if($loggedUserRoleLetter != "S"){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            switch($loggedUserRoleLetter){
+                case "G":
+                    return $this->redirect(['action' => 'indexGeneralDirector']);
+                    break;
+                case "D":
+                    return $this->redirect(['action' => 'indexDivisionDirector']);
+                    break;
+                default:
+                    return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+            }
+        }
+        
+        $loggedUserProductArea = substr($loggedUser["role_id"], 2, 1);
+        $users = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'S%\'']
+        ]);
+        $users = $this->paginate($users);
+        $this->set(compact('users', $users));
+
+        $sellers = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE '=>$loggedUserRoleId]
+        ]);
+        $sellers = $this->paginate($sellers);
+        $this->set(compact('sellers', $sellers));
+
+        $divisionDirectors = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'D'.$loggedUserDept.$loggedUserProductArea.'\'']
+        ]);
+        $divisionDirectors = $this->paginate($divisionDirectors);
+        $this->set(compact('divisionDirectors', $divisionDirectors));
+
+        $generalDirectors = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'G'.$loggedUserDept.'\'']
+        ]);
+        $generalDirectors = $this->paginate($generalDirectors);
+        $this->set(compact('generalDirectors', $generalDirectors));
+    }
+
+    public function indexDivisionDirector() {  
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserDept = substr($loggedUser["role_id"], 1, 1);
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        if($loggedUserRoleLetter != "D"){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            switch($loggedUserRoleLetter){
+                case "G":
+                    return $this->redirect(['action' => 'indexGeneralDirector']);
+                    break;
+                case "S":
+                    return $this->redirect(['action' => 'indexSeller']);
+                    break;
+                default:
+                    return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+            }
+        }
+        
+        $loggedUserProductArea = substr($loggedUser["role_id"], 2, 1);
+        $users = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'S%\'']
+        ]);
+        $users = $this->paginate($users);
+        $this->set(compact('users', $users));
+
+        $sellers = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'S'.$loggedUserDept.$loggedUserProductArea.'\'']
+        ]);
+        $sellers = $this->paginate($sellers);
+        $this->set(compact('sellers', $sellers));
+
+        $divisionDirectors = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'D'.$loggedUserDept.'%\'']
+        ]);
+        $divisionDirectors = $this->paginate($divisionDirectors);
+        $this->set(compact('divisionDirectors', $divisionDirectors));
+
+        $generalDirectors = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'G'.$loggedUserDept.'\'']
+        ]);
+        $generalDirectors = $this->paginate($generalDirectors);
+        $this->set(compact('generalDirectors', $generalDirectors));
+    }
+
+    public function indexGeneralDirector() {  
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserDept = substr($loggedUser["role_id"], 1, 1);
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        if($loggedUserRoleLetter != "G"){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            switch($loggedUserRoleLetter){
+                case "D":
+                    return $this->redirect(['action' => 'indexDivisionDirector']);
+                    break;
+                case "S":
+                    return $this->redirect(['action' => 'indexSeller']);
+                    break;
+                default:
+                    return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+            }
+        }
+        
+        $users = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'S%\'']
+        ]);
+        $users = $this->paginate($users);
+        $this->set(compact('users', $users));
+
+        $sellers = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'S'.$loggedUserDept.'%\'']
+        ]);
+        $sellers = $this->paginate($sellers);
+        $this->set(compact('sellers', $sellers));
+
+        $divisionDirectors = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'D'.$loggedUserDept.'%\'']
+        ]);
+        $divisionDirectors = $this->paginate($divisionDirectors);
+        $this->set(compact('divisionDirectors', $divisionDirectors));
+
+        $generalDirectors = $this->Users->find('all', [
+            'fields' => ['id','email', 'city'],
+            'conditions' => ['Users.role_id LIKE \'G%\'']
+        ]);
+        $generalDirectors = $this->paginate($generalDirectors);
+        $this->set(compact('generalDirectors', $generalDirectors));
+    }
 
     /**
      * View method

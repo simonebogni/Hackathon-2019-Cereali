@@ -35,9 +35,4 @@
 			<?= $this->Form->end() ?>
 		</div>
 	</div>
-	<div class="row mt-3">
-		<div class="col">
-			<p class="text-center">To create an account click here: <?= $this->Html->link(__('Register'), ['controller' => 'Registers', 'action' => 'register']) ?></p>
-		</div>
-	</div>
 </div>

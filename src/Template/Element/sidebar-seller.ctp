@@ -4,17 +4,17 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
           <li class="active">
-            <a class="" href="index.html">
+            <a class="" href="/users/index-seller">
               <i class="icon_house_alt"></i>
-              <span>Dashboard - Seller</span>
+              <span>Home - Seller</span>
             </a>
           </li>
            <li class="sub-menu">
             <a href="javascript:;" class="">
-                          <i class="icon_document_alt"></i>
-                          <span>Forms</span>
-                          <span class="menu-arrow arrow_carrot-right"></span>
-                      </a>
+              <i class="icon_document_alt"></i>
+              <span>Forms</span>
+              <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
             <ul class="sub">
               <li><a class="" href="form_component.html">View pending Form </a></li>
                <li><a class="" href="form_validation.html">Send Form</a></li> 
