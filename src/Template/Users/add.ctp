@@ -2,8 +2,11 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
- */ $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
-    $loggedUserId = $loggedUser["id"]
+ */ 
+    $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+    $loggedUserId = $loggedUser["id"];
+    $loggedUserRoleLetter = substr($loggedUser["role_id"], 0, 1);
+    $entityToBeAdded = $loggedUserRoleLetter == "G" ? "Division Manager" : ($loggedUserRoleLetter == "D" ? "Seller" : "User");
     
 ?>
 <div class="container-fluid">
@@ -18,7 +21,7 @@
                         <div class="row">
                             <div class="col">
                                 <fieldset>
-                                    <legend><?= __('Add User') ?></legend>
+                                    <legend><?= __('Add '.$entityToBeAdded) ?></legend>
                                     <div class="form-group">
                                         <?= $this->Form->control('email', ['class'=>'form-control']); ?>
                                     </div>
@@ -60,11 +63,6 @@
                                             ?>
                                         </select>
                                     </div>
-                                   
-
-                                    
-
-                                   
                                     <div class="form-group">
                                         <!-- da fixxareeeeeeeeeeee-->
                                         <?= $this->Form->hidden('user_id', ["value"=>$loggedUserId]);?>

@@ -67,7 +67,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 <body>
   <!--Brite charts-->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-selection/1.2.0/d3-selection.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.12.0/d3.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/britecharts@2/dist/bundled/britecharts.min.js" type="text/javascript"></script>
   <!-- container section start -->
   <section id="container">

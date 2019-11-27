@@ -20,12 +20,16 @@
               <li><a class="" href="form_validation.html">Send Form</a></li>
             </ul>
           </li>
-          
-          <li>
-            <a class="" href="/shock-reports/add">
-                          <i class="fas fa-exclamation-triangle"></i>
-                          <span>Report a Problem</span>
-                      </a>
+          <li class="sub-menu">
+            <a class=""a href="javascript:fas fa-exclamation-triangle;">
+              <i class="fas fa-exclamation-triangle"></i>
+              <span> Problem</span>
+              <span class="menu-arrow arrow_carrot-right"></span>
+            </a>
+            <ul class="sub">
+              <li><a class="" href="/shock-reports/add">Report a Problem</a></li>
+              <li><a class=""  href="/shock-reports/index_division_director">My Problems</a></li>
+            </ul>
           </li>
           <li>
             <a class="" href="/users/add">

@@ -26,7 +26,7 @@
                                         <?= $this->Form->control('shock_type_other', ['class'=>'form-control']);?>
                                     </div>
                                     <div class="form-group">
-                                        <?= $this->Form->control('damage_amount', ['class'=>'form-control', 'step'=>'100.00']);?>
+                                        <?= $this->Form->control('damage_amount', ['class'=>'form-control']);?>
                                     </div>
                                     <div class="form-group">
                                         <?= $this->Form->hidden('user_id', ["value"=>$loggedUserId]);?>
