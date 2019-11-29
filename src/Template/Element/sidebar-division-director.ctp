@@ -23,12 +23,12 @@
           <li class="sub-menu">
             <a class=""a href="javascript:fas fa-exclamation-triangle;">
               <i class="fas fa-exclamation-triangle"></i>
-              <span> Problem</span>
+              <span> Problems</span>
               <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
               <li><a class="" href="/shock-reports/add">Report a Problem</a></li>
-              <li><a class=""  href="/shock-reports/index-division-director">My Problems</a></li>
+              <li><a class=""  href="/shock-reports/index-division-director">View Problems</a></li>
             </ul>
           </li>
           <li>
