@@ -37,10 +37,16 @@
               <span>Generate Report</span>
             </a>
           </li>
-           <li>
+          <li>
             <a class="" href="/users/add">
               <i class="fas fa-users"></i>
               <span>Add Division Mngr</span>
+            </a>
+          </li>
+          <li>
+            <a class="" href="/product-areas/add">
+              <i class="fas fa-layer-group"></i>
+              <span>Add Product Area</span>
             </a>
           </li>
           <li>

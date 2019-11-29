@@ -3,39 +3,111 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ProductBatch $productBatch
  */
+$loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+$loggedUserId = $loggedUser["id"]
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Product Batches'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Products'), ['controller' => 'Products', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Product'), ['controller' => 'Products', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Product Batch Partitions'), ['controller' => 'ProductBatchPartitions', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Product Batch Partition'), ['controller' => 'ProductBatchPartitions', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="productBatches form large-9 medium-8 columns content">
-    <?= $this->Form->create($productBatch) ?>
-    <fieldset>
-        <legend><?= __('Add Product Batch') ?></legend>
-        <?php
-            echo $this->Form->control('quantity_sale_goal');
-            echo $this->Form->control('quantity_online_sale_goal');
-            echo $this->Form->control('ordinary_reference_date');
-            echo $this->Form->control('production_date');
-            echo $this->Form->control('expiry_date');
-            echo $this->Form->control('phytosanitary_information');
-            echo $this->Form->control('packaging_provision');
-            echo $this->Form->control('base_unit_price');
-            echo $this->Form->control('creation_date');
-            echo $this->Form->control('closed_date', ['empty' => true]);
-            echo $this->Form->control('product_id', ['options' => $products]);
-            echo $this->Form->control('assigner_id');
-            echo $this->Form->control('assignee_id', ['options' => $users]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <?= $this->element('sidebar');?>
+        </div>
+        <div class="col-md-8">
+            <div class="row firstPageElement">
+                <div class="col">
+                    <?= $this->Form->create($productBatch) ?>
+                        <div class="row">
+                            <div class="col">
+                                <fieldset>
+                                    <legend><?= __('Add Product Batch') ?></legend>
+                                    <div class="form-group">
+                                        <?= $this->Form->control('quantity_sale_goal', ['class'=>'form-control']);?>
+                                    </div>
+                                    <div class="form-group">
+                                        <?= $this->Form->control('quantity_online_sale_goal', ['class'=>'form-control']);?>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-2"><label>Ordinary reference date</label></div>
+                                            <div class="col-2"><?= $this->Form->year('ordinary_reference_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->month('ordinary_reference_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->day('ordinary_reference_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->hour('ordinary_reference_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->minute('ordinary_reference_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-2"><label>Production date</label></div>
+                                            <div class="col-2"><?= $this->Form->year('production_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->month('production_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->day('production_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->hour('production_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->minute('production_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-2"><label>Expiry date</label></div>
+                                            <div class="col-2"><?= $this->Form->year('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->month('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->day('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->hour('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                            <div class="col-2"><?= $this->Form->minute('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <?= $this->Form->control('phytosanitary_information', ['class'=>'form-control']);?>
+                                    </div>
+                                    <div class="form-group">
+                                        <?= $this->Form->control('packaging_provision', ['class'=>'form-control']);?>
+                                    </div>
+                                    <div class="form-group">
+                                        <?= $this->Form->control('base_unit_price', ['class'=>'form-control']);?>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="assignee_id">Product</label>
+                                        <select class="form-control" id="product_id" name="product_id">
+                                            <?php
+                                                $optGroup = null;
+                                                foreach($products as $product){
+                                                    if($product->product_area->name != $optGroup){
+                                                        if($optGroup !== null){
+                                                            //chiudi optgroup
+                                                            ?></optgroup><?php
+                                                        }
+                                                        //apri il nuovo optgroup
+                                                        ?><optgroup label="Area <?=$product->product_area->id?> - <?=$product->product_area->name?>"><?php
+                                                        $optGroup = $product->product_area->name;
+                                                    }
+                                                    ?><option value="<?=$product->id?>"><?=$product->name?></option><?php
+                                                }
+                                                //chiudi l'ultimo optgroup
+                                            ?>
+                                            </optgroup>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="assignee_id">Assignee</label>
+                                        <select class="form-control" id="assignee_id" name="assignee_id">
+                                            <?php
+                                                foreach($users as $user){
+                                                    ?><option value="<?=$user->id?>"><?=$user->email?> - <?=$user->role->name?></option><?php
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
+                                    <?= $this->Form->hidden('assigner_id', ['class'=>'form-control', 'value'=>$loggedUserId]);?>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4 offset-8">
+                                <?= $this->Form->button(__('Submit'), ["class"=>"btn btn-primary btn-block"]) ?>
+                            </div>
+                        </div>
+                    <?= $this->Form->end() ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

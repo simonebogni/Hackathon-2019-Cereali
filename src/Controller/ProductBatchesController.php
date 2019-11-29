@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * ProductBatches Controller
@@ -50,18 +51,27 @@ class ProductBatchesController extends AppController
      */
     public function add()
     {
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserDept = substr($loggedUser["role_id"], 1, 1);
         $productBatch = $this->ProductBatches->newEntity();
         if ($this->request->is('post')) {
             $productBatch = $this->ProductBatches->patchEntity($productBatch, $this->request->getData());
+            $productBatch->creation_date = Time::now();
+            $productBatch->closed_date = null;
             if ($this->ProductBatches->save($productBatch)) {
                 $this->Flash->success(__('The product batch has been saved.'));
 
                 return $this->redirect(['action' => 'index']);
             }
+            $this->log($productBatch->getErrors(),'error');
             $this->Flash->error(__('The product batch could not be saved. Please, try again.'));
         }
-        $products = $this->ProductBatches->Products->find('list', ['limit' => 200]);
-        $users = $this->ProductBatches->Users->find('list', ['limit' => 200]);
+        $products = $this->ProductBatches->Products->find('all', [
+            'contain' => ['ProductAreas'], 
+            'order'=>['ProductAreas.id' => 'ASC', 'Products.name'=>'ASC']
+            ]);
+        $users = $this->ProductBatches->Users->find('all', ['contain'=>['Roles'],'conditions' => ['Users.role_id LIKE \'D'.$loggedUserDept.'%\'']]);
         $this->set(compact('productBatch', 'products', 'users'));
     }
 
