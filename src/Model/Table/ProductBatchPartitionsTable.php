@@ -69,9 +69,17 @@ class ProductBatchPartitionsTable extends Table
             ->allowEmptyString('quantity_sale_goal', false);
 
         $validator
+            ->integer('quantity_sale_effective')
+            ->allowEmptyString('quantity_sale_effective');
+
+        $validator
             ->decimal('advised_sale_price')
             ->requirePresence('advised_sale_price', 'create')
             ->allowEmptyString('advised_sale_price', false);
+
+        $validator
+            ->decimal('effective_sale_price')
+            ->allowEmptyString('effective_sale_price');
 
         $validator
             ->boolean('focus_sale')
@@ -87,7 +95,7 @@ class ProductBatchPartitionsTable extends Table
             ->scalar('extraordinary_loss_type')
             ->maxLength('extraordinary_loss_type', 50)
             ->requirePresence('extraordinary_loss_type', 'create')
-            ->allowEmptyString('extraordinary_loss_type', false);
+            ->allowEmptyString('extraordinary_loss_type');
 
         $validator
             ->dateTime('creation_date')

@@ -21,7 +21,9 @@
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('quantity_sale_goal') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('quantity_sale_effective') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('advised_sale_price') ?></th>
+                <th scope="col"><?= $this->Paginator->sort('effective_sale_price') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('focus_sale') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('extraordinary_loss_value') ?></th>
                 <th scope="col"><?= $this->Paginator->sort('extraordinary_loss_type') ?></th>
@@ -38,7 +40,9 @@
             <tr>
                 <td><?= $this->Number->format($productBatchPartition->id) ?></td>
                 <td><?= $this->Number->format($productBatchPartition->quantity_sale_goal) ?></td>
+                <td><?= $this->Number->format($productBatchPartition->quantity_sale_effective) ?></td>
                 <td><?= $this->Number->format($productBatchPartition->advised_sale_price) ?></td>
+                <td><?= $this->Number->format($productBatchPartition->effective_sale_price) ?></td>
                 <td><?= h($productBatchPartition->focus_sale) ?></td>
                 <td><?= $this->Number->format($productBatchPartition->extraordinary_loss_value) ?></td>
                 <td><?= h($productBatchPartition->extraordinary_loss_type) ?></td>

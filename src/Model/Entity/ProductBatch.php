@@ -8,13 +8,16 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int $quantity_sale_goal
+ * @property int|null $quantity_sale_effective
  * @property int $quantity_online_sale_goal
+ * @property int|null $quantity_online_sale_effective
  * @property \Cake\I18n\FrozenTime $ordinary_reference_date
  * @property \Cake\I18n\FrozenTime $production_date
  * @property \Cake\I18n\FrozenTime $expiry_date
  * @property string|null $phytosanitary_information
  * @property string|null $packaging_provision
  * @property float $base_unit_price
+ * @property float|null $average_unit_price
  * @property \Cake\I18n\FrozenTime $creation_date
  * @property \Cake\I18n\FrozenTime|null $closed_date
  * @property int $product_id
@@ -38,13 +41,16 @@ class ProductBatch extends Entity
      */
     protected $_accessible = [
         'quantity_sale_goal' => true,
+        'quantity_sale_effective' => true,
         'quantity_online_sale_goal' => true,
+        'quantity_online_sale_effective' => true,
         'ordinary_reference_date' => true,
         'production_date' => true,
         'expiry_date' => true,
         'phytosanitary_information' => true,
         'packaging_provision' => true,
         'base_unit_price' => true,
+        'average_unit_price' => true,
         'creation_date' => true,
         'closed_date' => true,
         'product_id' => true,

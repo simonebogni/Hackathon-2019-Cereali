@@ -12,7 +12,7 @@
         <div class="col-md-8">
             <div class="row firstPageElement">
                 <div class="col">
-                    <h3><?= h($user->id) ?></h3>
+                    <h3>User #<?= h($user->id) ?></h3>
                 </div>
             </div>
             <div class="row">

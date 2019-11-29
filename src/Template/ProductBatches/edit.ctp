@@ -28,13 +28,16 @@
         <legend><?= __('Edit Product Batch') ?></legend>
         <?php
             echo $this->Form->control('quantity_sale_goal');
+            echo $this->Form->control('quantity_sale_effective');
             echo $this->Form->control('quantity_online_sale_goal');
+            echo $this->Form->control('quantity_online_sale_effective');
             echo $this->Form->control('ordinary_reference_date');
             echo $this->Form->control('production_date');
             echo $this->Form->control('expiry_date');
             echo $this->Form->control('phytosanitary_information');
             echo $this->Form->control('packaging_provision');
             echo $this->Form->control('base_unit_price');
+            echo $this->Form->control('average_unit_price');
             echo $this->Form->control('creation_date');
             echo $this->Form->control('closed_date', ['empty' => true]);
             echo $this->Form->control('product_id', ['options' => $products]);

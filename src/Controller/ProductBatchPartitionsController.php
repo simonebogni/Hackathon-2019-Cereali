@@ -50,9 +50,13 @@ class ProductBatchPartitionsController extends AppController
      */
     public function add()
     {
+
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+
         $productBatchPartition = $this->ProductBatchPartitions->newEntity();
         if ($this->request->is('post')) {
             $productBatchPartition = $this->ProductBatchPartitions->patchEntity($productBatchPartition, $this->request->getData());
+            $productBatchPartition->assigner_id = $loggedUser["id"];
             if ($this->ProductBatchPartitions->save($productBatchPartition)) {
                 $this->Flash->success(__('The product batch partition has been saved.'));
 

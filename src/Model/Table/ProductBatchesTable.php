@@ -73,9 +73,17 @@ class ProductBatchesTable extends Table
             ->allowEmptyString('quantity_sale_goal', false);
 
         $validator
+            ->integer('quantity_sale_effective')
+            ->allowEmptyString('quantity_sale_effective');
+
+        $validator
             ->integer('quantity_online_sale_goal')
             ->requirePresence('quantity_online_sale_goal', 'create')
             ->allowEmptyString('quantity_online_sale_goal', false);
+
+        $validator
+            ->integer('quantity_online_sale_effective')
+            ->allowEmptyString('quantity_online_sale_effective');
 
         $validator
             ->dateTime('ordinary_reference_date')
@@ -104,6 +112,10 @@ class ProductBatchesTable extends Table
             ->decimal('base_unit_price')
             ->requirePresence('base_unit_price', 'create')
             ->allowEmptyString('base_unit_price', false);
+
+        $validator
+            ->decimal('average_unit_price')
+            ->allowEmptyString('average_unit_price');
 
         $validator
             ->dateTime('creation_date')

@@ -26,7 +26,9 @@
         <legend><?= __('Edit Product Batch Partition') ?></legend>
         <?php
             echo $this->Form->control('quantity_sale_goal');
+            echo $this->Form->control('quantity_sale_effective');
             echo $this->Form->control('advised_sale_price');
+            echo $this->Form->control('effective_sale_price');
             echo $this->Form->control('focus_sale');
             echo $this->Form->control('extraordinary_loss_value');
             echo $this->Form->control('extraordinary_loss_type');

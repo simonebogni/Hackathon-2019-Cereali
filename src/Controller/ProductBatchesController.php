@@ -59,6 +59,9 @@ class ProductBatchesController extends AppController
             $productBatch = $this->ProductBatches->patchEntity($productBatch, $this->request->getData());
             $productBatch->creation_date = Time::now();
             $productBatch->closed_date = null;
+            $productBatch->quantity_sale_effective = null;
+            $productBatch->quantity_online_sale_effective = null;
+            $productBatch->average_unit_price = null;
             if ($this->ProductBatches->save($productBatch)) {
                 $this->Flash->success(__('The product batch has been saved.'));
 

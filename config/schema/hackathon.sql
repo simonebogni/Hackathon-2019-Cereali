@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2019 at 11:49 PM
+-- Generation Time: Nov 29, 2019 at 05:04 PM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -154,19 +154,29 @@ INSERT INTO `product_areas` (`id`, `name`) VALUES
 CREATE TABLE `product_batches` (
   `id` bigint(20) NOT NULL,
   `quantity_sale_goal` int(11) NOT NULL,
+  `quantity_sale_effective` int(11) DEFAULT NULL,
   `quantity_online_sale_goal` int(11) NOT NULL,
+  `quantity_online_sale_effective` int(11) DEFAULT NULL,
   `ordinary_reference_date` datetime NOT NULL,
   `production_date` datetime NOT NULL,
   `expiry_date` datetime NOT NULL,
   `phytosanitary_information` text DEFAULT NULL,
   `packaging_provision` text DEFAULT NULL,
   `base_unit_price` decimal(10,2) NOT NULL,
+  `average_unit_price` decimal(10,2) DEFAULT NULL,
   `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
   `closed_date` datetime DEFAULT NULL,
   `product_id` bigint(20) NOT NULL,
   `assigner_id` bigint(20) UNSIGNED NOT NULL,
   `assignee_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product_batches`
+--
+
+INSERT INTO `product_batches` (`id`, `quantity_sale_goal`, `quantity_sale_effective`, `quantity_online_sale_goal`, `quantity_online_sale_effective`, `ordinary_reference_date`, `production_date`, `expiry_date`, `phytosanitary_information`, `packaging_provision`, `base_unit_price`, `average_unit_price`, `creation_date`, `closed_date`, `product_id`, `assigner_id`, `assignee_id`) VALUES
+(1, 1000, NULL, 200, NULL, '2019-11-28 19:37:00', '2019-11-28 19:37:00', '2020-11-28 19:37:00', '', '', '20.00', NULL, '2019-11-28 19:41:11', NULL, 9, 5, 6);
 
 -- --------------------------------------------------------
 
@@ -177,16 +187,25 @@ CREATE TABLE `product_batches` (
 CREATE TABLE `product_batch_partitions` (
   `id` bigint(20) NOT NULL,
   `quantity_sale_goal` int(11) NOT NULL,
+  `quantity_sale_effective` int(11) DEFAULT NULL,
   `advised_sale_price` decimal(10,2) NOT NULL,
+  `effective_sale_price` decimal(10,2) DEFAULT NULL,
   `focus_sale` tinyint(1) NOT NULL DEFAULT 0,
   `extraordinary_loss_value` decimal(10,2) NOT NULL DEFAULT 0.00,
-  `extraordinary_loss_type` varchar(50) NOT NULL,
+  `extraordinary_loss_type` varchar(50) DEFAULT NULL,
   `creation_date` datetime NOT NULL DEFAULT current_timestamp(),
   `closed_date` datetime DEFAULT NULL,
   `product_batch_id` bigint(20) NOT NULL,
   `assigner_id` bigint(20) UNSIGNED NOT NULL,
   `assignee_id` bigint(20) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `product_batch_partitions`
+--
+
+INSERT INTO `product_batch_partitions` (`id`, `quantity_sale_goal`, `quantity_sale_effective`, `advised_sale_price`, `effective_sale_price`, `focus_sale`, `extraordinary_loss_value`, `extraordinary_loss_type`, `creation_date`, `closed_date`, `product_batch_id`, `assigner_id`, `assignee_id`) VALUES
+(2, 200, NULL, '15.00', NULL, 1, '0.00', '', '2019-11-29 16:52:00', NULL, 1, 6, 9);
 
 -- --------------------------------------------------------
 
@@ -222,6 +241,8 @@ INSERT INTO `roles` (`id`, `name`, `role_type_id`, `department_id`, `product_are
 ('D3A', 'Sale Division Director - Area A', 'D', 3, 'A'),
 ('D3B', 'Sale Division Director - Area B', 'D', 3, 'B'),
 ('D3C', 'Sale Division Director - Area C', 'D', 3, 'C'),
+('G1', 'Import General Director', 'G', 1, NULL),
+('G2', 'Manifacturing General Director', 'G', 2, NULL),
 ('G3', 'Sale General Director', 'G', 3, NULL),
 ('S3A', 'Seller - Area A', 'S', 3, 'A'),
 ('S3B', 'Seller - Area B', 'S', 3, 'B'),
@@ -269,13 +290,13 @@ CREATE TABLE `shock_reports` (
 
 INSERT INTO `shock_reports` (`id`, `shock_type_id`, `shock_type_other`, `damage_amount`, `user_id`, `created_date`, `processed_date`) VALUES
 (1, NULL, 'Blackout', '2100.00', 9, '2019-11-26 18:25:41', NULL),
-(2, 5, '', '10000.00', 11, '2019-11-26 18:25:41', NULL),
+(2, 5, '', '10000.00', 11, '2019-11-26 18:25:41', '2019-11-27 00:00:00'),
 (3, 5, '', '20000.00', 11, '2019-11-26 18:25:41', NULL),
-(4, NULL, 'Prova', '0.00', 11, '2019-11-26 18:25:41', NULL),
-(5, NULL, 'Prova', '0.00', 11, '2019-11-26 18:25:41', NULL),
+(4, NULL, 'Blackout', '100.00', 11, '2019-11-26 18:25:41', NULL),
+(5, NULL, 'Blackout', '500.00', 11, '2019-11-26 18:25:41', NULL),
 (6, 4, '', '5000.00', 9, '2019-11-26 18:25:41', NULL),
-(7, 4, '', '0.00', 6, '2019-11-26 21:08:29', NULL),
-(8, 2, '', '10.00', 6, '2019-11-26 21:11:25', NULL),
+(7, 4, '', '2000.00', 6, '2019-11-26 21:08:29', NULL),
+(8, 2, '', '500.00', 6, '2019-11-26 21:11:25', NULL),
 (9, 3, '', '500.00', 9, '2019-11-26 21:20:17', NULL);
 
 -- --------------------------------------------------------
@@ -330,7 +351,9 @@ INSERT INTO `users` (`id`, `email`, `password`, `city`, `role_id`) VALUES
 (10, 'sa2@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Bologna', 'S3A'),
 (11, 'sb1@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Roma', 'S3B'),
 (12, 'sc1@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Bologna', 'S3C'),
-(13, 'sa5@cerealgreen.com', '$2y$10$AlhVJ6EQ.2YlgNoTIhRjfu1uc2Poi0ZrZcIIiPaO5gTmzN/QP30Gi', 'Roma', 'S3A');
+(13, 'sa5@cerealgreen.com', '$2y$10$AlhVJ6EQ.2YlgNoTIhRjfu1uc2Poi0ZrZcIIiPaO5gTmzN/QP30Gi', 'Roma', 'S3A'),
+(14, 'importgd@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'Roma', 'G1'),
+(15, 'manifacturinggd@cerealgreen.com', '$2y$10$eh7n1FqXTE68Ju2KlMkcLORVEnZh5uaa1YqOYE8YWtrkgRR5kHb4C', 'New York', 'G2');
 
 --
 -- Indexes for dumped tables
@@ -476,13 +499,13 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_batches`
 --
 ALTER TABLE `product_batches`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `product_batch_partitions`
 --
 ALTER TABLE `product_batch_partitions`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `shock_reports`
@@ -500,7 +523,7 @@ ALTER TABLE `shock_types`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- Constraints for dumped tables

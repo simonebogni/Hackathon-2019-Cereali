@@ -41,8 +41,16 @@
             <td><?= $this->Number->format($productBatchPartition->quantity_sale_goal) ?></td>
         </tr>
         <tr>
+            <th scope="row"><?= __('Quantity Sale Effective') ?></th>
+            <td><?= $this->Number->format($productBatchPartition->quantity_sale_effective) ?></td>
+        </tr>
+        <tr>
             <th scope="row"><?= __('Advised Sale Price') ?></th>
             <td><?= $this->Number->format($productBatchPartition->advised_sale_price) ?></td>
+        </tr>
+        <tr>
+            <th scope="row"><?= __('Effective Sale Price') ?></th>
+            <td><?= $this->Number->format($productBatchPartition->effective_sale_price) ?></td>
         </tr>
         <tr>
             <th scope="row"><?= __('Extraordinary Loss Value') ?></th>

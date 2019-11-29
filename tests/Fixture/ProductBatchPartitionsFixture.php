@@ -17,7 +17,9 @@ class ProductBatchPartitionsFixture extends TestFixture
     public $fields = [
         'id' => ['type' => 'biginteger', 'length' => 20, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'autoIncrement' => true, 'precision' => null],
         'quantity_sale_goal' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
+        'quantity_sale_effective' => ['type' => 'integer', 'length' => 11, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => '', 'precision' => null, 'autoIncrement' => null],
         'advised_sale_price' => ['type' => 'decimal', 'length' => 10, 'precision' => 2, 'unsigned' => false, 'null' => false, 'default' => null, 'comment' => ''],
+        'effective_sale_price' => ['type' => 'decimal', 'length' => 10, 'precision' => 2, 'unsigned' => false, 'null' => true, 'default' => null, 'comment' => ''],
         'focus_sale' => ['type' => 'boolean', 'length' => null, 'null' => false, 'default' => '0', 'comment' => '', 'precision' => null],
         'extraordinary_loss_value' => ['type' => 'decimal', 'length' => 10, 'precision' => 2, 'unsigned' => false, 'null' => false, 'default' => '0.00', 'comment' => ''],
         'extraordinary_loss_type' => ['type' => 'string', 'length' => 50, 'null' => false, 'default' => null, 'collate' => 'latin1_swedish_ci', 'comment' => '', 'precision' => null, 'fixed' => null],
@@ -54,12 +56,14 @@ class ProductBatchPartitionsFixture extends TestFixture
             [
                 'id' => 1,
                 'quantity_sale_goal' => 1,
+                'quantity_sale_effective' => 1,
                 'advised_sale_price' => 1.5,
+                'effective_sale_price' => 1.5,
                 'focus_sale' => 1,
                 'extraordinary_loss_value' => 1.5,
                 'extraordinary_loss_type' => 'Lorem ipsum dolor sit amet',
-                'creation_date' => '2019-11-22 12:44:44',
-                'closed_date' => '2019-11-22 12:44:44',
+                'creation_date' => '2019-11-29 15:12:49',
+                'closed_date' => '2019-11-29 15:12:49',
                 'product_batch_id' => 1,
                 'assigner_id' => 1,
                 'assignee_id' => 1
