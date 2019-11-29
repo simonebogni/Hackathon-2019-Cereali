@@ -38,6 +38,12 @@
             </a>
           </li>
           <li>
+            <a class="" href="/products/add">
+              <i class="fas fa-box-open"></i>
+              <span>Add Product</span>
+            </a>
+          </li>
+          <li>
             <a class="" href="/users/logout">
               <i class="fas fa-sign-out-alt"></i>
               <span>Logout</span>

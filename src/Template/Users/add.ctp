@@ -33,7 +33,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="role_id">Role</label>
-                                        <select class="form-control" id="role_id">
+                                        <select class="form-control" id="role_id" name="role_id">
                                             <?php
                                             switch(substr($loggedUser["role_id"], 0, 1)){
                                                 case "G":

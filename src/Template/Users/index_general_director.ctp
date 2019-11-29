@@ -15,7 +15,7 @@
         <div class="col-md-8">
             <div class="row firstPageElement">
                 <div class="col justify-content-center">
-                    <h3><?= __('The General Managers in the organization') ?></h3>
+                    <h3><?= __('General Managers in the organization') ?></h3>
                 </div>
             </div>
             <div class="row">
