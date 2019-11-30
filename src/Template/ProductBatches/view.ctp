@@ -123,7 +123,7 @@
                             <th scope="col"><?= __('Closed Date') ?></th>
                             <th scope="col"><?= __('Product Batch Id') ?></th>
                             <th scope="col"><?= __('Assignee Id') ?></th>
-                            <th scope="col" class="actions"><?= __('Actions') ?></th>
+                            
                         </tr>
                         <?php foreach ($productBatch->product_batch_partitions as $productBatchPartitions): ?>
                         <tr>
@@ -139,11 +139,7 @@
                             <td><?= h($productBatchPartitions->closed_date===null?"":$productBatchPartitions->closed_date->format('Y-m-d H:i:s')) ?></td>
                             <td><?= h($productBatchPartitions->product_batch_id) ?></td>
                             <td><?= h($productBatchPartitions->assignee_id) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'ProductBatchPartitions', 'action' => 'view', $productBatchPartitions->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'ProductBatchPartitions', 'action' => 'edit', $productBatchPartitions->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'ProductBatchPartitions', 'action' => 'delete', $productBatchPartitions->id], ['confirm' => __('Are you sure you want to delete # {0}?', $productBatchPartitions->id)]) ?>
-                            </td>
+                           
                         </tr>
                         <?php endforeach; ?>
                     </table>

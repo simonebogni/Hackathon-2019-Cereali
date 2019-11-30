@@ -60,7 +60,7 @@ class ProductBatchPartitionsController extends AppController
             if ($this->ProductBatchPartitions->save($productBatchPartition)) {
                 $this->Flash->success(__('The product batch partition has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The product batch partition could not be saved. Please, try again.'));
         }
@@ -86,7 +86,7 @@ class ProductBatchPartitionsController extends AppController
             if ($this->ProductBatchPartitions->save($productBatchPartition)) {
                 $this->Flash->success(__('The product batch partition has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view']);
             }
             $this->Flash->error(__('The product batch partition could not be saved. Please, try again.'));
         }

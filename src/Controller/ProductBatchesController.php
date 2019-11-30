@@ -65,7 +65,7 @@ class ProductBatchesController extends AppController
             if ($this->ProductBatches->save($productBatch)) {
                 $this->Flash->success(__('The product batch has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->log($productBatch->getErrors(),'error');
             $this->Flash->error(__('The product batch could not be saved. Please, try again.'));
@@ -95,7 +95,7 @@ class ProductBatchesController extends AppController
             if ($this->ProductBatches->save($productBatch)) {
                 $this->Flash->success(__('The product batch has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'view']);
             }
             $this->Flash->error(__('The product batch could not be saved. Please, try again.'));
         }

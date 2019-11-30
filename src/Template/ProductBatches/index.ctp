@@ -57,8 +57,8 @@
                                 <td><?= $this->Number->format($productBatch->assigner_id) ?></td>
                                 <td><?= $productBatch->has('user') ? $this->Html->link($productBatch->user->id, ['controller' => 'Users', 'action' => 'view', $productBatch->user->id]) : '' ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $productBatch->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productBatch->id]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $productBatch->id], ["class" =>"btn btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productBatch->id], ["class" =>"btn btn-warning"]) ?>
                                   
                                 </td>
                             </tr>

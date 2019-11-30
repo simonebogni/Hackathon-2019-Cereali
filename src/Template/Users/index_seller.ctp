@@ -34,7 +34,7 @@
                                 <td><?= h($generalDirector->email) ?></td>
                                 <td><?= h($generalDirector->city) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $generalDirector->id]) ?>
+                                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $generalDirector->id], ["class" =>"btn btn-primary"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -63,7 +63,7 @@
                                 <td><?= h($divisionDirector->email) ?></td>
                                 <td><?= h($divisionDirector->city) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $divisionDirector->id]) ?>
+                                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $divisionDirector->id], ["class" =>"btn btn-primary"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -92,7 +92,7 @@
                                 <td><?= h($sellers->email) ?></td>
                                 <td><?= h($sellers->city) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $sellers->id]) ?>
+                                    <?= $this->Html->link(__('View'), ['controller' => 'Users', 'action' => 'view', $sellers->id], ["class" =>"btn btn-primary"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

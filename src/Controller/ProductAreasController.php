@@ -53,7 +53,7 @@ class ProductAreasController extends AppController
             if ($this->ProductAreas->save($productArea)) {
                 $this->Flash->success(__('The product area has been saved.'));
 
-                return $this->redirect(['action' => 'index']);
+                return $this->redirect(['action' => 'add']);
             }
             $this->Flash->error(__('The product area could not be saved. Please, try again.'));
         }
