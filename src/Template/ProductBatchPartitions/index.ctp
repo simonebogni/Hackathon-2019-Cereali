@@ -57,8 +57,8 @@
                                 <td><?= $this->Number->format($productBatchPartition->assigner_id) ?></td>
                                 <td><?= $productBatchPartition->has('user') ? $this->Html->link($productBatchPartition->user->id, ['controller' => 'Users', 'action' => 'view', $productBatchPartition->user->id]) : '' ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $productBatchPartition->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productBatchPartition->id]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $productBatchPartition->id], ["class " =>"btn btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productBatchPartition->id], ["class" =>"btn btn-warning"]) ?>
                                     
                                 </td>
                             </tr>

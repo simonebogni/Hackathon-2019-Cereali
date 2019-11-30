@@ -32,12 +32,6 @@
             </ul>
           </li>
           <li>
-            <a class="" href="widgets.html">
-              <i class="fas fa-chart-line"></i>
-              <span>Generate Report</span>
-            </a>
-          </li>
-          <li>
             <a class="" href="/users/add">
               <i class="fas fa-users"></i>
               <span>Add Division Mngr</span>

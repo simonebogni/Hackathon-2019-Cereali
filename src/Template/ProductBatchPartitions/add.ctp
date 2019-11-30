@@ -24,27 +24,18 @@ $loggedUserId = $loggedUser["id"]
                                     <div class="form-group">
                                         <?= $this->Form->control('quantity_sale_goal',['class'=>'form-control']);?>
                                     </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->control('quantity_sale_effective',['class'=>'form-control']);?>
-                                    </div>
+                                   
                                     <div class="form-group">
                                         <?= $this->Form->control('advised_sale_price',['class'=>'form-control']);?>
                                     </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->control('effective_sale_price',['class'=>'form-control']);?>
-                                    </div>
+                                   
                                     <div class="form-check">
                                         <?= $this->Form->control('focus_sale',['class'=>'form-check']);?>
                                     </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->control('extraordinary_loss_value',['class'=>'form-control']);?>
-                                    </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->control('extraordinary_loss_type',['class'=>'form-control']);?>
-                                    </div>
+                               
                                     <div class="form-group">
                                         <div class="row">
-                                            <div class="col-2"><label>Expiry date</label></div>
+                                            <div class="col-2"><label>Creation date</label></div>
                                             <div class="col-2"><?= $this->Form->year('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
                                             <div class="col-2"><?= $this->Form->month('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
                                             <div class="col-2"><?= $this->Form->day('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
@@ -52,14 +43,7 @@ $loggedUserId = $loggedUser["id"]
                                             <div class="col-2"><?= $this->Form->minute('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
                                         </div>
                                     <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-2"><label>Expiry date</label></div>
-                                        <div class="col-2"><?= $this->Form->year('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        <div class="col-2"><?= $this->Form->month('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        <div class="col-2"><?= $this->Form->day('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        <div class="col-2"><?= $this->Form->hour('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        <div class="col-2"><?= $this->Form->minute('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                    </div>
+                                 
                                     <div class="form-group">
                                         <?= $this->Form->control('product_batch_id', ['options' => $productBatches, 'class'=>'form-control']);?>
                                     </div>
