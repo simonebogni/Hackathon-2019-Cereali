@@ -16,9 +16,8 @@
               <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
-              <li><a class="" href="/product-batches">View  forms</a></li>
+              <li><a class="" href="/product-batches">View forms</a></li>
               <li><a class="" href="/product-batch-partitions/add">Send Form to seller</a></li>
-              
             </ul>
           </li>
           <li class="sub-menu">

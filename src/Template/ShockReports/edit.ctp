@@ -36,7 +36,7 @@ $loggedUserId = $loggedUser["id"]
                                 </fieldset>
                             </div>
                         </div>
-                        <div class="row">
+                        <div class="row mb-5">
                             <div class="col-4">
                                 <?= $this->Form->button(__('Submit'), ["class"=>"btn btn-primary btn-block"]) ?>
                             </div>

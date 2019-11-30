@@ -53,7 +53,7 @@
                 </div>
             </div>
             <!-- charts -->
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col col-md-4">
                     <h3><span class="font-weight-bold">Total damage:</span> <?= $this->Number->currency($totalDamageAmount) ?></h3>
                 </div>
