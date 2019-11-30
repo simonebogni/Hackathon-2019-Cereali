@@ -4,19 +4,24 @@
  * @var \App\Model\Entity\ProductBatchPartition[]|\Cake\Collection\CollectionInterface $productBatchPartitions
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('New Product Batch Partition'), ['action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Product Batches'), ['controller' => 'ProductBatches', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Product Batch'), ['controller' => 'ProductBatches', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="productBatchPartitions index large-9 medium-8 columns content">
-    <h3><?= __('Product Batch Partitions') ?></h3>
-    <table cellpadding="0" cellspacing="0">
+
+
+   
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <?= $this->element("sidebar");?>
+        </div>
+        <div class="col-md-8">
+            <div class="row firstPageElement">
+                <div class="col">
+                    <h3><?= __('Product Batches') ?></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <table class="table">
         <thead>
             <tr>
                 <th scope="col"><?= $this->Paginator->sort('id') ?></th>
@@ -54,20 +59,29 @@
                 <td class="actions">
                     <?= $this->Html->link(__('View'), ['action' => 'view', $productBatchPartition->id]) ?>
                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productBatchPartition->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $productBatchPartition->id], ['confirm' => __('Are you sure you want to delete # {0}?', $productBatchPartition->id)]) ?>
+                    
                 </td>
             </tr>
             <?php endforeach; ?>
         </tbody>
-    </table>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+   </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="paginator">
+                        <ul class="pagination">
+                            <?= $this->Paginator->first('<< ' . __('first')) ?>
+                            <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                            <?= $this->Paginator->numbers() ?>
+                            <?= $this->Paginator->next(__('next') . ' >') ?>
+                            <?= $this->Paginator->last(__('last') . ' >>') ?>
+                        </ul>
+                        <p><?= $this->Paginator->counter(['format' => __('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')]) ?></p>
+                    </div>
+                </div>
+            </div>
+ 
+        </div>
     </div>
 </div>

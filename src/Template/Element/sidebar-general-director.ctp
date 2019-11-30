@@ -16,8 +16,8 @@
               <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
-              <li><a class="" href="form_component.html">View pending Form </a></li>
-               <!--<li><a class="" href="form_validation.html">Send Form</a></li> -->
+              <li><a class="" href="/product-batches">View  report from dd </a></li>
+               <li><a class="" href="/product-batches/add">Send Form to dd</a></li> 
             </ul>
           </li>
            <li class="sub-menu">
@@ -27,7 +27,7 @@
               <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
-              <li><a class=""  href="/shock-reports/index">View Problems </a></li>
+              <li><a class=""  href="/shock-reports/index_general_director">View Problems </a></li>
                <!--<li><a class="" href="form_validation.html">Send Form</a></li> -->
             </ul>
           </li>
