@@ -5,6 +5,8 @@
  * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReportsUnprocessed
  * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReportsProcessed
  */
+
+$loggedUser = $this->getRequest()->getSession()->read("Auth.User");
 ?>
 
 <div class="container-fluid">
@@ -42,9 +44,9 @@
                                 <td><?= $shockReport->has('user') ? $this->Html->link($shockReport->user->email, ['controller' => 'Users', 'action' => 'view', $shockReport->user->id]) : '' ?></td>
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-primary btn-sm"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-warning btn-sm"]) ?>
+                                    <?= $shockReport->user_id == $loggedUser["id"] ? $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id), "class" =>"btn btn-danger btn-sm"]) : "" ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -109,9 +111,8 @@
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-warning"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -176,9 +177,9 @@
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-warning"]) ?>
+                                    <?= ($shockReport->user_id == $loggedUser["id"] &&  $shockReport->processed_date !=null) ? $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id), "class" =>"btn btn-danger btn-sm"]) : "" ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

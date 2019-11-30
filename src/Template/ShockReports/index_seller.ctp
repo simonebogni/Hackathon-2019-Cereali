@@ -42,9 +42,9 @@
                                 <td><?= $shockReport->has('user') ? $this->Html->link($shockReport->user->email, ['controller' => 'Users', 'action' => 'view', $shockReport->user->id]) : '' ?></td>
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class"=>"btn btn-sm btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class"=>"btn btn-sm btn-warning"]) ?>
+                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id), "class"=>"btn btn-sm btn-danger"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -109,9 +109,8 @@
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class"=>"btn btn-sm btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class"=>"btn btn-sm btn-warning"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -176,9 +175,9 @@
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class"=>"btn btn-sm btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class"=>"btn btn-sm btn-warning"]) ?>
+                                    <?= $shockReport->processed_date != null ? $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id), "class"=>"btn btn-sm btn-primary"]) : "" ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

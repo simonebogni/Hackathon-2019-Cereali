@@ -54,14 +54,14 @@
             </div>
             <!-- charts -->
             <div class="row">
-                <div class="col col-md-3">
+                <div class="col col-md-4">
                     <h3><span class="font-weight-bold">Total damage:</span> <?= $this->Number->currency($totalDamageAmount) ?></h3>
                 </div>
                 <div class="col col-md-4">
                     <div id="yourShockReportsProcessedPieChartContainer">
                     </div>
                 </div>
-                <div class="col col-md-3">
+                <div class="col col-md-4">
                     <div id="yourShockReportsProcessedPieChartLegend">
                     </div>
                 </div>

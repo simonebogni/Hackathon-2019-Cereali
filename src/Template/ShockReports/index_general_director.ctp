@@ -15,7 +15,7 @@
         <div class="col-md-8">
             <div class="row firstPageElement">
                 <div class="col-8">
-                    <h3><?= __('Your Unprocessed Shock Reports') ?></h3>
+                    <h3><?= __('Unprocessed Shock Reports') ?></h3>
                 </div>
                 <div class="col-4">
                     <h3><a href="/shock-reports/process-reports" class="btn btn-warning btn-block">Process all reports</a></h3>
@@ -45,9 +45,8 @@
                                 <td><?= $shockReport->has('user') ? $this->Html->link($shockReport->user->email, ['controller' => 'Users', 'action' => 'view', $shockReport->user->id]) : '' ?></td>
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-primary btn-sm"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-warning btn-sm"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -83,7 +82,7 @@
             <!-- Processed reports -->
             <div class="row">
                 <div class="col">
-                    <h3><?= __('Your Processed Shock Reports') ?></h3>
+                    <h3><?= __('Processed Shock Reports') ?></h3>
                 </div>
             </div>
             <div class="row">
@@ -112,9 +111,8 @@
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-primary btn-sm"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-warning btn-sm"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -150,7 +148,7 @@
             <!-- All reports -->
             <div class="row">
                 <div class="col">
-                    <h3><?= __('All your Shock Reports') ?></h3>
+                    <h3><?= __('All the Shock Reports') ?></h3>
                 </div>
             </div>
             <div class="row">
@@ -179,9 +177,8 @@
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id]) ?>
-                                    <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id)]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-primary btn-sm"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-warning btn-sm"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
