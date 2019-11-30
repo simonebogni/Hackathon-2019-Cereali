@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\Time;
 
 /**
  * ShockReports Controller
@@ -136,21 +137,18 @@ class ShockReportsController extends AppController
             }
         }
         $this->paginate = [
-            'contain' => ['ShockTypes', 'Users'],
-            'conditions' => ['Users.id LIKE' => $loggedUser["id"]]
+            'contain' => ['ShockTypes', 'Users']
         ];
         $shockReports = $this->paginate($this->ShockReports);
         $shockReportsUnprocessed = $this->ShockReports->find('all', [
             'contain' => ['ShockTypes', 'Users'],
             'conditions' => [
-                'Users.id LIKE' => $loggedUser["id"],
                 'ShockReports.processed_date IS NULL'
             ]
         ]);
         $shockReportsProcessed = $this->ShockReports->find('all', [
             'contain' => ['ShockTypes', 'Users'],
             'conditions' => [
-                'Users.id LIKE' => $loggedUser["id"],
                 'ShockReports.processed_date IS NOT NULL'
             ]
         ]);
@@ -176,6 +174,45 @@ class ShockReportsController extends AppController
         ]);
 
         $this->set('shockReport', $shockReport);
+    }
+
+
+    public function processReports(){
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleLetter = substr($loggedUser["role_id"], 0, 1);
+
+        if($loggedUserRoleLetter != "G"){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            switch($loggedUserRoleLetter){
+                case "D":
+                    return $this->redirect(['action' => 'indexDivisionDirector']);
+                    break;
+                case "S":
+                    return $this->redirect(['action' => 'indexSeller']);
+                    break;
+                default:
+                    return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+            }
+        }
+        $now = Time::now();
+        $shockReportsUnprocessed = $this->ShockReports->find('all', [
+            'contain' => ['ShockTypes', 'Users'],
+            'conditions' => [
+                'ShockReports.processed_date IS NULL'
+            ]
+        ]);
+        $count = $shockReportsUnprocessed->count();
+        $processedShockReports = array();
+        foreach($shockReportsUnprocessed as $shockReportunprocessed){
+            $shockReportunprocessed->processed_date = $now;
+            if(!$this->ShockReports->save($shockReportunprocessed)){
+                $this->Flash->error(__('Sorry, we couldn\'t process the shock report #'.$shockReportunprocessed->id.'.'));
+                break;
+            }
+            array_push($processedShockReports, $shockReportunprocessed);
+        }
+        $this->set(compact("count", $count));
+        $this->set(compact("processedShockReports", $processedShockReports));
     }
 
     /**

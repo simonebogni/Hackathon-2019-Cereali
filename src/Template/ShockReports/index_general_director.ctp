@@ -14,8 +14,11 @@
         </div>
         <div class="col-md-8">
             <div class="row firstPageElement">
-                <div class="col">
+                <div class="col-8">
                     <h3><?= __('Your Unprocessed Shock Reports') ?></h3>
+                </div>
+                <div class="col-4">
+                    <h3><a href="/shock-reports/process-reports" class="btn btn-warning btn-block">Process all reports</a></h3>
                 </div>
             </div>
             <div class="row">
