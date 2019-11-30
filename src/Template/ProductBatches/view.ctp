@@ -106,7 +106,7 @@
                     <h4><?= __('Related Product Batch Partitions') ?></h4>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col">
                 <?php if (!empty($productBatch->product_batch_partitions)){ ?>
                     <table class="table">

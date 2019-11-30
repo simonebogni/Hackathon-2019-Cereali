@@ -19,14 +19,14 @@ $loggedUserId = $loggedUser["id"]
                         <div class="row">
                             <div class="col">
                                 <fieldset>
-        <legend><?= __('Edit Product Area') ?></legend>
-         <div class="form-group">
-         <?=   echo $this->Form->control('name');?>
-        </div>
-     </fieldset>
+                                    <legend><?= __('Edit Product Area') ?></legend>
+                                    <div class="form-group">
+                                        <?= $this->Form->control('name');?>
+                                    </div>
+                                </fieldset>
                             </div>
                         </div>
-                        <div class="row  mb-5">
+                        <div class="row mb-5">
                             <div class="col-4">
                                 <?= $this->Form->button(__('Submit'), ["class"=>"btn btn-primary btn-block"]) ?>
                             </div>

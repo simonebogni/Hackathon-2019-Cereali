@@ -67,7 +67,7 @@
                     </table>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col">
                     <div class="paginator">
                         <ul class="pagination">

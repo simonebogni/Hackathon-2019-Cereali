@@ -15,7 +15,7 @@
                     <h3>User #<?= h($user->id) ?></h3>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mb-5">
                 <div class="col">
                     <table class="table">
                         <tr>
@@ -36,10 +36,6 @@
                         </tr>
                     </table>
                 </div>
-            </div>
-            <div class="">
-                
-                
             </div>
         </div>
     </div>
