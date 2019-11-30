@@ -4,22 +4,21 @@
  * @var \App\Model\Entity\ProductBatchPartition $productBatchPartition
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Product Batch Partition'), ['action' => 'edit', $productBatchPartition->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Product Batch Partition'), ['action' => 'delete', $productBatchPartition->id], ['confirm' => __('Are you sure you want to delete # {0}?', $productBatchPartition->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Product Batch Partitions'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Product Batch Partition'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Product Batches'), ['controller' => 'ProductBatches', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Product Batch'), ['controller' => 'ProductBatches', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="productBatchPartitions view large-9 medium-8 columns content">
-    <h3><?= h($productBatchPartition->id) ?></h3>
-    <table class="vertical-table">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <?= $this->element("sidebar");?>
+        </div>
+        <div class="col-md-8">
+            <div class="row firstPageElement">
+                <div class="col">
+                    <h3>Product Batch Partition #<?= h($productBatchPartition->id) ?></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+    <table class="table">
         <tr>
             <th scope="row"><?= __('Extraordinary Loss Type') ?></th>
             <td><?= h($productBatchPartition->extraordinary_loss_type) ?></td>
@@ -73,4 +72,8 @@
             <td><?= $productBatchPartition->focus_sale ? __('Yes') : __('No'); ?></td>
         </tr>
     </table>
+</div>
+ </div>
+        </div>
+    </div>
 </div>

@@ -4,25 +4,36 @@
  * @var \App\Model\Entity\Product $product
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Products'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Product Areas'), ['controller' => 'ProductAreas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Product Area'), ['controller' => 'ProductAreas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Product Batches'), ['controller' => 'ProductBatches', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Product Batch'), ['controller' => 'ProductBatches', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="products form large-9 medium-8 columns content">
-    <?= $this->Form->create($product) ?>
-    <fieldset>
-        <legend><?= __('Add Product') ?></legend>
-        <?php
-            echo $this->Form->control('name');
-            echo $this->Form->control('product_area_id', ['options' => $productAreas]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-2">
+            <?= $this->element('sidebar');?>
+        </div>
+        <div class="col-md-8">
+            <div class="row firstPageElement">
+                <div class="col">
+                    <?= $this->Form->create($product) ?>
+                    <fieldset>
+                        <legend><?= __('Add Product ') ?></legend>
+                        <div class="row">
+                            <div class="col">
+                                <div class="form-group">
+                                <?php
+                                    echo $this->Form->control('name', ["class"=>"form-control"]);
+                                ?>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                    <div class="row">
+                            <div class="col col-md-4 offset-md-8">
+                            <?= $this->Form->button(__('Submit'), ["class"=>"btn btn-primary btn-block"]) ?>
+                            </div>
+                        </div>
+                    <?= $this->Form->end() ?>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
