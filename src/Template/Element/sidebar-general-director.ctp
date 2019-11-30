@@ -16,8 +16,8 @@
               <span class="menu-arrow arrow_carrot-right"></span>
             </a>
             <ul class="sub">
-              <li><a class="" href="/product-batches">View  report from dd </a></li>
-               <li><a class="" href="/product-batches/add">Send Form to dd</a></li> 
+              <li><a class="" href="/product-batches">Total Sales Report</a></li>
+               <li><a class="" href="/product-batches/add">Send Batch</a></li> 
             </ul>
           </li>
            <li class="sub-menu">
