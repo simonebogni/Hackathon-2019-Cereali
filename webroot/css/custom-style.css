@@ -3,7 +3,7 @@
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 1002;
+  z-index: 9999;
 }
 
 #container {
@@ -79,6 +79,7 @@
 
 #sidebar {
   margin-left: -15px !important;
+  z-index: 9998;
 }
 
 .sidebar-closed > #sidebar > ul {
@@ -91,5 +92,9 @@
 
 .sidebar-closed #sidebar {
   margin-left: -195px !important;
+}
+
+.actions {
+  min-width: 180px;
 }
 /*# sourceMappingURL=custom-style.css.map */

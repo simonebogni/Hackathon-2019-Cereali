@@ -2,10 +2,16 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReports
- * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReportsUnprocessed
- * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReportsProcessed
  */
-
+$shockReportsUnprocessed = array();
+$shockReportsProcessed = array();
+foreach($shockReports as $shockReport){
+    if($shockReport->processed_date==null || $shockReport->processed_date==""){
+        array_push($shockReportsUnprocessed, $shockReport);
+    } else {
+        array_push($shockReportsProcessed, $shockReport);
+    }
+}
 $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
 ?>
 
@@ -111,8 +117,8 @@ $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-primary"]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-warning"]) ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-sm btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-sm btn-warning"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
@@ -177,9 +183,9 @@ $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
                                 <td><?= h($shockReport->created_date===null?"":$shockReport->created_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= h($shockReport->processed_date===null?"":$shockReport->processed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-primary"]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-warning"]) ?>
-                                    <?= ($shockReport->user_id == $loggedUser["id"] &&  $shockReport->processed_date !=null) ? $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id), "class" =>"btn btn-danger btn-sm"]) : "" ?>
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class" =>"btn btn-sm btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class" =>"btn btn-sm btn-warning"]) ?>
+                                    <?= ($shockReport->user_id == $loggedUser["id"] &&  $shockReport->processed_date == null) ? $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id), "class" =>"btn btn-danger btn-sm"]) : "" ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

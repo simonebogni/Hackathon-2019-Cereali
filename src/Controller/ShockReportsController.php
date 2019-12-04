@@ -51,25 +51,6 @@ class ShockReportsController extends AppController
             'conditions' => ['Users.id LIKE' => $loggedUser["id"]]
         ];
         $shockReports = $this->paginate($this->ShockReports);
-        $shockReportsUnprocessed = $this->ShockReports->find('all', [
-            'contain' => ['ShockTypes', 'Users'],
-            'conditions' => [
-                'Users.id LIKE' => $loggedUser["id"],
-                'ShockReports.processed_date IS NULL'
-            ]
-        ]);
-        $shockReportsProcessed = $this->ShockReports->find('all', [
-            'contain' => ['ShockTypes', 'Users'],
-            'conditions' => [
-                'Users.id LIKE' => $loggedUser["id"],
-                'ShockReports.processed_date IS NOT NULL'
-            ]
-        ]);
-        
-        $shockReportsUnprocessed = $this->paginate($shockReportsUnprocessed);
-        $shockReportsProcessed = $this->paginate($shockReportsProcessed);
-        $this->set(compact('shockReportsProcessed', $shockReportsProcessed));
-        $this->set(compact('shockReportsUnprocessed', $shockReportsUnprocessed));
         $this->set(compact('shockReports', $shockReports));
     }
 
@@ -96,25 +77,6 @@ class ShockReportsController extends AppController
             'conditions' => ['Users.id LIKE' => $loggedUser["id"]]
         ];
         $shockReports = $this->paginate($this->ShockReports);
-        $shockReportsUnprocessed = $this->ShockReports->find('all', [
-            'contain' => ['ShockTypes', 'Users'],
-            'conditions' => [
-                'Users.id LIKE' => $loggedUser["id"],
-                'ShockReports.processed_date IS NULL'
-            ]
-        ]);
-        $shockReportsProcessed = $this->ShockReports->find('all', [
-            'contain' => ['ShockTypes', 'Users'],
-            'conditions' => [
-                'Users.id LIKE' => $loggedUser["id"],
-                'ShockReports.processed_date IS NOT NULL'
-            ]
-        ]);
-        
-        $shockReportsUnprocessed = $this->paginate($shockReportsUnprocessed);
-        $shockReportsProcessed = $this->paginate($shockReportsProcessed);
-        $this->set(compact('shockReportsProcessed', $shockReportsProcessed));
-        $this->set(compact('shockReportsUnprocessed', $shockReportsUnprocessed));
         $this->set(compact('shockReports', $shockReports));
     }
 
@@ -140,23 +102,6 @@ class ShockReportsController extends AppController
             'contain' => ['ShockTypes', 'Users']
         ];
         $shockReports = $this->paginate($this->ShockReports);
-        $shockReportsUnprocessed = $this->ShockReports->find('all', [
-            'contain' => ['ShockTypes', 'Users'],
-            'conditions' => [
-                'ShockReports.processed_date IS NULL'
-            ]
-        ]);
-        $shockReportsProcessed = $this->ShockReports->find('all', [
-            'contain' => ['ShockTypes', 'Users'],
-            'conditions' => [
-                'ShockReports.processed_date IS NOT NULL'
-            ]
-        ]);
-        
-        $shockReportsUnprocessed = $this->paginate($shockReportsUnprocessed);
-        $shockReportsProcessed = $this->paginate($shockReportsProcessed);
-        $this->set(compact('shockReportsProcessed', $shockReportsProcessed));
-        $this->set(compact('shockReportsUnprocessed', $shockReportsUnprocessed));
         $this->set(compact('shockReports', $shockReports));
     }
 

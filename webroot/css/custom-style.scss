@@ -1,10 +1,14 @@
+$baseYellow: #E8D600;
+$baseGreen: #008800;
+
 .header{
     border-bottom: none !important;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 1002;
+    z-index: 9999;
 }
+
 #container{
     display: flex;
     flex-direction: column;
@@ -31,17 +35,17 @@
         margin-right: 8px;
     }
     span{
-        color: darken(#E8D600, 10%) !important;
+        color: darken($baseYellow, 10%) !important;
         padding-top: 10px;
         font-weight: initial;
         &.lite{
-            color: lighten(#008800, 10% )!important;
+            color: lighten($baseGreen, 10% )!important;
             font-weight: bold;
             font-family: "Georgia", serif;
         }
     }
-    .st0{fill:#E8D600;}
-	.st1{fill:#008800;}
+    .st0{fill:$baseYellow;}
+	.st1{fill:$baseGreen;}
 }
 
 #logo-login{
@@ -56,6 +60,7 @@
 
 #sidebar{
     margin-left: -15px !important;
+    z-index: 9998;
 }
 
 .sidebar-closed > #sidebar > ul {
@@ -64,18 +69,18 @@
 
 }
 
-
-
 .sidebar-closed #main-content {
 
     margin-left: 0px;
 
 }
 
-
-
 .sidebar-closed #sidebar {
 
     margin-left: -195px !important;
 
+}
+
+.actions{
+    min-width: 180px;
 }

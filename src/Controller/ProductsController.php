@@ -60,7 +60,7 @@ class ProductsController extends AppController
             }
             $this->Flash->error(__('The product could not be saved. Please, try again.'));
         }
-        $productAreas = $this->Products->ProductAreas->find('list', ['limit' => 200]);
+        $productAreas = $this->Products->ProductAreas->find('all');
         $this->set(compact('product', 'productAreas'));
     }
 

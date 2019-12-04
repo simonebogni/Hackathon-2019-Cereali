@@ -2,6 +2,9 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ProductBatchPartition $productBatchPartition
+ * @var \App\Model\Entity\ProductBatch $productBatch
+ * @var \App\Model\Entity\User[]|\Cake\Collection\CollectionInterface $users
+ * @var int $maxQuantity
  */
 
 
@@ -22,49 +25,28 @@ $loggedUserId = $loggedUser["id"]
                                 <fieldset>
                                     <legend><?= __('Add Product Batch Partition') ?></legend>
                                     <div class="form-group">
-                                        <?= $this->Form->control('quantity_sale_goal',['class'=>'form-control']);?>
-                                    </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->control('quantity_sale_effective',['class'=>'form-control']);?>
+                                        <label for="quantity_sale_goal" >Quantity sale goal (from 1 to <?=$maxQuantity?>)</label>
+                                        <input type="number" class="form-control" id="quantity_sale_goal" name="quantity_sale_goal" min="1" max="<?= $maxQuantity ?>" required/>
                                     </div>
                                     <div class="form-group">
                                         <?= $this->Form->control('advised_sale_price',['class'=>'form-control']);?>
-                                    </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->control('effective_sale_price',['class'=>'form-control']);?>
                                     </div>
                                     <div class="form-check">
                                         <?= $this->Form->control('focus_sale',['class'=>'form-check']);?>
                                     </div>
                                     <div class="form-group">
-                                        <?= $this->Form->control('extraordinary_loss_value',['class'=>'form-control']);?>
+                                        <label for="product_batch_id">Product batch</label>
+                                        <input type="text" id="product_batch_id" name="product_batch_id" class="form-control" value="<?= $productBatch->id ?>" disabled/>
                                     </div>
                                     <div class="form-group">
-                                        <?= $this->Form->control('extraordinary_loss_type',['class'=>'form-control']);?>
-                                    </div>
-                                    <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-2"><label>Expiry date</label></div>
-                                            <div class="col-2"><?= $this->Form->year('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                            <div class="col-2"><?= $this->Form->month('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                            <div class="col-2"><?= $this->Form->day('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                            <div class="col-2"><?= $this->Form->hour('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                            <div class="col-2"><?= $this->Form->minute('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        </div>
-                                    <div class="form-group">
-                                    <div class="row">
-                                        <div class="col-2"><label>Expiry date</label></div>
-                                        <div class="col-2"><?= $this->Form->year('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        <div class="col-2"><?= $this->Form->month('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        <div class="col-2"><?= $this->Form->day('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        <div class="col-2"><?= $this->Form->hour('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                        <div class="col-2"><?= $this->Form->minute('expiry_date', ['empty'=>false, 'class'=>'form-control']);?></div>
-                                    </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->control('product_batch_id', ['options' => $productBatches, 'class'=>'form-control']);?>
-                                    </div>
-                                    <div class="form-group">
-                                        <?= $this->Form->control('assignee_id', ['options' => $users ,'class'=>'form-control']);?>
+                                        <label for="assignee_id">Assignee</label>
+                                        <select class="form-control" name="assignee_id" id="assignee_id">
+                                            <?php foreach($users as $user){
+                                                ?>
+                                                <option value="<?= $user->id?>"><?= $user->email?> - <?= $user->city?></option>
+                                                <?php
+                                            }?>
+                                        </select>
                                     </div>
                                 </fieldset>
                             </div>

@@ -3,6 +3,17 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ProductBatch $productBatch
  */
+
+ $quantityEffectivelySold = 0;
+ $totalPrice = 0.00;
+ $averagePrice = 0.00;
+ foreach($productBatch->product_batch_partitions as $productBatchPartition){
+    $quantityEffectivelySold += $productBatchPartition->quantity_sale_effective;
+    $totalPrice +=  $productBatchPartition->quantity_sale_effective * $productBatchPartition->effective_sale_price;
+ }
+ if($quantityEffectivelySold != 0){
+     $averagePrice = $totalPrice/$quantityEffectivelySold;
+}
 ?>
 <div class="container-fluid">
     <div class="row">
@@ -23,8 +34,8 @@
                             <td><?= $productBatch->has('product') ? $this->Html->link($productBatch->product->name, ['controller' => 'Products', 'action' => 'view', $productBatch->product->id]) : '' ?></td>
                         </tr>
                         <tr>
-                            <th scope="row"><?= __('User') ?></th>
-                            <td><?= $productBatch->has('user') ? $this->Html->link($productBatch->user->email, ['controller' => 'Users', 'action' => 'view', $productBatch->user->id]) : '' ?></td>
+                            <th scope="row"><?= __('Assignee') ?></th>
+                            <td><?= $productBatch->has('assignee') ? $this->Html->link($productBatch->assignee->email, ['controller' => 'Users', 'action' => 'view', $productBatch->assignee->id]) : '' ?></td>
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Id') ?></th>
@@ -36,7 +47,7 @@
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Quantity effectively sold') ?></th>
-                            <td><?= $this->Number->format($productBatch->quantity_sale_effective) ?></td>
+                            <td><?= $this->Number->format($quantityEffectivelySold) ?></td>
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Quantity Online Sale Goal') ?></th>
@@ -48,15 +59,15 @@
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Base Unit Price') ?></th>
-                            <td><?= $this->Number->format($productBatch->base_unit_price) ?></td>
+                            <td><?= $this->Number->currency($productBatch->base_unit_price) ?></td>
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Average Unit Price') ?></th>
-                            <td><?= $this->Number->format($productBatch->average_unit_price) ?></td>
+                            <td><?= $this->Number->currency($averagePrice) ?></td>
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Assigner Id') ?></th>
-                            <td><?= $this->Number->format($productBatch->assigner_id) ?></td>
+                            <td><?= $this->Number->format($productBatch->assigner->id) ?></td>
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Ordinary Reference Date') ?></th>
@@ -102,8 +113,11 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col">
+                <div class="col-8">
                     <h4><?= __('Related Product Batch Partitions') ?></h4>
+                </div>
+                <div class="col-4">
+                <?= $this->Html->link(__('Add partition'), ['controller'=>'ProductBatchPartitions', 'action' => 'add', $productBatch->id], ["class" =>"btn btn-success btn-block"]) ?>
                 </div>
             </div>
             <div class="row mb-5">
@@ -130,10 +144,10 @@
                             <td><?= h($productBatchPartitions->id) ?></td>
                             <td><?= h($productBatchPartitions->quantity_sale_goal) ?></td>
                             <td><?= h($productBatchPartitions->quantity_sale_effective) ?></td>
-                            <td><?= h($productBatchPartitions->advised_sale_price) ?></td>
-                            <td><?= h($productBatchPartitions->effective_sale_price) ?></td>
+                            <td><?= $this->Number->currency($productBatchPartitions->advised_sale_price) ?></td>
+                            <td><?= $this->Number->currency($productBatchPartitions->effective_sale_price) ?></td>
                             <td><?= h($productBatchPartitions->focus_sale ? __('Yes') : __('No')) ?></td>
-                            <td><?= h($productBatchPartitions->extraordinary_loss_value) ?></td>
+                            <td><?= $this->Number->currency($productBatchPartitions->extraordinary_loss_value) ?></td>
                             <td><?= h($productBatchPartitions->extraordinary_loss_type) ?></td>
                             <td><?= h($productBatchPartitions->creation_date===null?"":$productBatchPartitions->creation_date->format('Y-m-d H:i:s')) ?></td>
                             <td><?= h($productBatchPartitions->closed_date===null?"":$productBatchPartitions->closed_date->format('Y-m-d H:i:s')) ?></td>

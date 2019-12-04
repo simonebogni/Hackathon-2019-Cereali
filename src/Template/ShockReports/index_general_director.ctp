@@ -2,9 +2,16 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReports
- * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReportsUnprocessed
- * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReportsProcessed
  */
+$shockReportsUnprocessed = array();
+$shockReportsProcessed = array();
+foreach($shockReports as $shockReport){
+    if($shockReport->processed_date==null || $shockReport->processed_date==""){
+        array_push($shockReportsUnprocessed, $shockReport);
+    } else {
+        array_push($shockReportsProcessed, $shockReport);
+    }
+}
 ?>
 
 <div class="container-fluid">

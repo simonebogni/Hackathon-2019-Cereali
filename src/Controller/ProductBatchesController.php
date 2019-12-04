@@ -20,11 +20,38 @@ class ProductBatchesController extends AppController
      */
     public function index()
     {
-        $this->paginate = [
-            'contain' => ['Products', 'Users']
-        ];
-        $productBatches = $this->paginate($this->ProductBatches);
-
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        switch($loggedUserRoleLetter){
+            case "S":
+                $this->Flash->error(__('You are not authorized to access the requested content.'));
+                return $this->redirect(['controller'=>'ProductBatchPartitions', 'action' => 'index']);
+                break;
+            case "D":
+                //mostra i product batches assegnati all'utente
+                $productBatches = $this->ProductBatches->find('all', [
+                    'contain' => ['Products', 'Assignees', "Assigners"],
+                    'conditions' => [
+                        'ProductBatches.assignee_id' => $loggedUser["id"]
+                    ]
+                ]);
+                break;
+            case "G":
+                //mostra i product batches assegnati dall'utente
+                $productBatches = $this->ProductBatches->find('all', [
+                    'contain' => ['Products', 'Assignees', "Assigners"],
+                    'conditions' => [
+                        'ProductBatches.assigner_id' => $loggedUser["id"]
+                    ]
+                ]);
+                break;
+            default:
+                $this->Flash->error(__('You are not authorized to access the requested content.'));
+                return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+        }
+        
+        $productBatches = $this->paginate($productBatches);
         $this->set(compact('productBatches'));
     }
 
@@ -36,9 +63,17 @@ class ProductBatchesController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function view($id = null)
-    {
+    {   
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserDept = substr($loggedUser["role_id"], 1, 1);
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        if($loggedUserRoleLetter == 'S'){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+        }
         $productBatch = $this->ProductBatches->get($id, [
-            'contain' => ['Products', 'Users', 'ProductBatchPartitions']
+            'contain' => ['Products', 'Assigners', 'Assignees', 'ProductBatchPartitions']
         ]);
 
         $this->set('productBatch', $productBatch);
@@ -54,6 +89,11 @@ class ProductBatchesController extends AppController
         $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
         $loggedUserRoleId = $loggedUser["role_id"];
         $loggedUserDept = substr($loggedUser["role_id"], 1, 1);
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        if($loggedUserRoleLetter == 'S' || $loggedUserRoleLetter == 'D'){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+        }
         $productBatch = $this->ProductBatches->newEntity();
         if ($this->request->is('post')) {
             $productBatch = $this->ProductBatches->patchEntity($productBatch, $this->request->getData());
@@ -87,6 +127,14 @@ class ProductBatchesController extends AppController
      */
     public function edit($id = null)
     {
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserDept = substr($loggedUser["role_id"], 1, 1);
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        if($loggedUserRoleLetter == 'S'){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+        }
         $productBatch = $this->ProductBatches->get($id, [
             'contain' => []
         ]);
@@ -113,6 +161,14 @@ class ProductBatchesController extends AppController
      */
     public function delete($id = null)
     {
+        $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserDept = substr($loggedUser["role_id"], 1, 1);
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        if($loggedUserRoleLetter == 'S' || $loggedUserRoleLetter == 'D'){
+            $this->Flash->error(__('You are not authorized to access the requested content.'));
+            return $this->redirect(['controller'=>'Users', 'action' => 'index']);
+        }
         $this->request->allowMethod(['post', 'delete']);
         $productBatch = $this->ProductBatches->get($id);
         if ($this->ProductBatches->delete($productBatch)) {

@@ -43,11 +43,13 @@ class ProductBatchesTable extends Table
             'foreignKey' => 'product_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Users', [
+        $this->belongsTo('Assigners', [
+            'className' => 'Users',
             'foreignKey' => 'assigner_id',
             'joinType' => 'INNER'
         ]);
-        $this->belongsTo('Users', [
+        $this->belongsTo('Assignees', [
+            'className' => 'Users',
             'foreignKey' => 'assignee_id',
             'joinType' => 'INNER'
         ]);

@@ -2,9 +2,16 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReports
- * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReportsUnprocessed
- * @var \App\Model\Entity\ShockReport[]|\Cake\Collection\CollectionInterface $shockReportsProcessed
  */
+$shockReportsUnprocessed = array();
+$shockReportsProcessed = array();
+foreach($shockReports as $shockReport){
+    if($shockReport->processed_date==null || $shockReport->processed_date==""){
+        array_push($shockReportsUnprocessed, $shockReport);
+    } else {
+        array_push($shockReportsProcessed, $shockReport);
+    }
+}
 ?>
 
 <div class="container-fluid">
@@ -177,7 +184,7 @@
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['action' => 'view', $shockReport->id], ["class"=>"btn btn-sm btn-primary"]) ?>
                                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $shockReport->id], ["class"=>"btn btn-sm btn-warning"]) ?>
-                                    <?= $shockReport->processed_date != null ? $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id), "class"=>"btn btn-sm btn-primary"]) : "" ?>
+                                    <?= $shockReport->processed_date == null ? $this->Form->postLink(__('Delete'), ['action' => 'delete', $shockReport->id], ['confirm' => __('Are you sure you want to delete the report #{0}?', $shockReport->id), "class"=>"btn btn-sm btn-danger"]) : "" ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

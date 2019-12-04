@@ -46,20 +46,19 @@
                                 <td><?= $this->Number->format($productBatchPartition->id) ?></td>
                                 <td><?= $this->Number->format($productBatchPartition->quantity_sale_goal) ?></td>
                                 <td><?= $this->Number->format($productBatchPartition->quantity_sale_effective) ?></td>
-                                <td><?= $this->Number->format($productBatchPartition->advised_sale_price) ?></td>
-                                <td><?= $this->Number->format($productBatchPartition->effective_sale_price) ?></td>
-                                <td><?= h($productBatchPartition->focus_sale) ?></td>
-                                <td><?= $this->Number->format($productBatchPartition->extraordinary_loss_value) ?></td>
-                                <td><?= h($productBatchPartition->extraordinary_loss_type) ?></td>
-                                <td><?= h($productBatchPartition->creation_date) ?></td>
-                                <td><?= h($productBatchPartition->closed_date) ?></td>
+                                <td><?= $this->Number->currency($productBatchPartition->advised_sale_price) ?></td>
+                                <td><?= $this->Number->currency($productBatchPartition->effective_sale_price) ?></td>
+                                <td><?= h($productBatchPartition->focus_sale? "Yes": "No") ?></td>
+                                <td><?= $this->Number->currency($productBatchPartition->extraordinary_loss_value) ?></td>
+                                <td><?= h($productBatchPartition->extraordinary_loss_type ? $productBatchPartition->extraordinary_loss_type : "") ?></td>
+                                <td><?= h($productBatchPartition->creation_date===null?"":$productBatchPartition->creation_date->format('Y-m-d H:i:s')) ?></td>
+                                <td><?= h($productBatchPartition->closed_date===null?"":$productBatchPartition->closed_date->format('Y-m-d H:i:s')) ?></td>
                                 <td><?= $productBatchPartition->has('product_batch') ? $this->Html->link($productBatchPartition->product_batch->id, ['controller' => 'ProductBatches', 'action' => 'view', $productBatchPartition->product_batch->id]) : '' ?></td>
                                 <td><?= $this->Number->format($productBatchPartition->assigner_id) ?></td>
                                 <td><?= $productBatchPartition->has('user') ? $this->Html->link($productBatchPartition->user->id, ['controller' => 'Users', 'action' => 'view', $productBatchPartition->user->id]) : '' ?></td>
                                 <td class="actions">
-                                    <?= $this->Html->link(__('View'), ['action' => 'view', $productBatchPartition->id]) ?>
-                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productBatchPartition->id]) ?>
-                                    
+                                    <?= $this->Html->link(__('View'), ['action' => 'view', $productBatchPartition->id], ["class"=>"btn btn-sm btn-primary"]) ?>
+                                    <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productBatchPartition->id], ["class"=>"btn btn-sm btn-warning"]) ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

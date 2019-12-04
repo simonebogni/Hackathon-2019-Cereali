@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\ORM\TableRegistry;
+use Cake\I18n\Time;
 
 /**
  * ProductBatchPartitions Controller
@@ -37,7 +39,7 @@ class ProductBatchPartitionsController extends AppController
     public function view($id = null)
     {
         $productBatchPartition = $this->ProductBatchPartitions->get($id, [
-            'contain' => ['ProductBatches', 'Users']
+            'contain' => ['ProductBatches', 'Assigners', 'Assignees']
         ]);
 
         $this->set('productBatchPartition', $productBatchPartition);
@@ -45,17 +47,27 @@ class ProductBatchPartitionsController extends AppController
 
     /**
      * Add method
-     *
+     * @param string|null $batchId Product Batch id.
      * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function add($batchId = null)
     {
 
         $loggedUser = $this->getRequest()->getSession()->read("Auth.User");
+        $loggedUserRoleId = $loggedUser["role_id"];
+        $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
+        $loggedUserProductArea = substr($loggedUserRoleId, 2, 1);
 
         $productBatchPartition = $this->ProductBatchPartitions->newEntity();
         if ($this->request->is('post')) {
             $productBatchPartition = $this->ProductBatchPartitions->patchEntity($productBatchPartition, $this->request->getData());
+            $productBatchPartition->assigner_id = $loggedUser["id"];
+            $productBatchPartition->quantity_sale_effective = null;
+            $productBatchPartition->effective_sale_price = null;
+            $productBatchPartition->extraordinary_loss_value = 0.00;
+            $productBatchPartition->extraordinary_loss_type = null;
+            $productBatchPartition->creation_date = Time::now();
+            $productBatchPartition->product_batch_id = $batchId;
             $productBatchPartition->assigner_id = $loggedUser["id"];
             if ($this->ProductBatchPartitions->save($productBatchPartition)) {
                 $this->Flash->success(__('The product batch partition has been saved.'));
@@ -64,9 +76,40 @@ class ProductBatchPartitionsController extends AppController
             }
             $this->Flash->error(__('The product batch partition could not be saved. Please, try again.'));
         }
-        $productBatches = $this->ProductBatchPartitions->ProductBatches->find('list', ['limit' => 200]);
-        $users = $this->ProductBatchPartitions->Users->find('list', ['limit' => 200]);
-        $this->set(compact('productBatchPartition', 'productBatches', 'users'));
+        if($batchId != null){
+            $ProductBatches = TableRegistry::getTableLocator()->get('ProductBatches');
+
+            $productBatch = $ProductBatches->get($batchId, ['contain' => ['Assignees']]);
+            if($productBatch->assignee_id != $loggedUser["id"]){
+                $this->Flash->error(__('You can\'t create partitions if you the batch has not been assigned to you.'));
+                return $this->redirect(['controller'=>'Users', 'action' => 'add']);
+            }
+            //get sellers of the same product area
+            $users = $this->ProductBatchPartitions->Users->find('all', [
+                'conditions' => [
+                    'Users.role_id LIKE \'S_'.$loggedUserProductArea.'\''
+                ]
+            ]);
+            //get max quantity available
+            $quantitySaleGoals = $this->ProductBatchPartitions->find('all', [
+                'contain' => ['ProductBatches'],
+                'conditions' => [
+                    'ProductBatches.id' => $productBatch->id
+                ],
+                'fields'=>[
+                    'quantity_sale_goal'
+                ]
+            ]);
+            $quantityTaken = 0;
+            foreach($quantitySaleGoals as $quantitySaleGoal){
+                $quantityTaken += $quantitySaleGoal->quantity_sale_goal;
+            }
+            $maxQuantity = $productBatch->quantity_sale_goal - $quantityTaken;
+            $this->set(compact('productBatchPartition', 'productBatch', 'users', 'maxQuantity'));
+        } else {
+            $this->Flash->error(__('The batch id was not passed as a parameter.'));
+            return $this->redirect(['controller'=>'Users', 'action' => 'add']);
+        }
     }
 
     /**
