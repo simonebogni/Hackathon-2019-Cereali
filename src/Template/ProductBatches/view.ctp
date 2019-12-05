@@ -66,8 +66,8 @@
                             <td><?= $this->Number->currency($averagePrice) ?></td>
                         </tr>
                         <tr>
-                            <th scope="row"><?= __('Assigner Id') ?></th>
-                            <td><?= $this->Number->format($productBatch->assigner->id) ?></td>
+                            <th scope="row"><?= __('Assigner') ?></th>
+                            <td><?= $productBatch->has('assigner') ? $this->Html->link($productBatch->assigner->email, ['controller' => 'Users', 'action' => 'view', $productBatch->assigner->id]) : '' ?></td>
                         </tr>
                         <tr>
                             <th scope="row"><?= __('Ordinary Reference Date') ?></th>

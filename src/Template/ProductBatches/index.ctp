@@ -177,7 +177,7 @@ $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
                                 <td class="actions">
                                     <?= $this->Html->link(__('View'), ['action' => 'view', $productBatch->id], ["class" =>"btn btn-primary btn-sm"]) ?>
                                     <?= $this->Html->link(__('Edit'), ['action' => 'edit', $productBatch->id], ["class" =>"btn btn-warning btn-sm"]) ?>
-                                    <?= $this->Html->link(__('Add partition'), ['controller'=>'ProductBatchPartitions', 'action' => 'add', $productBatch->id], ["class" =>"btn btn-success btn-sm"]) ?>
+                                    <?= $loggedUserRoleLetter=="D" ? $this->Html->link(__('Add partition'), ['controller'=>'ProductBatchPartitions', 'action' => 'add', $productBatch->id], ["class" =>"btn btn-success btn-sm"]) : "" ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>

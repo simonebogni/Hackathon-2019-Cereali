@@ -97,6 +97,7 @@ class ProductBatchesController extends AppController
         $productBatch = $this->ProductBatches->newEntity();
         if ($this->request->is('post')) {
             $productBatch = $this->ProductBatches->patchEntity($productBatch, $this->request->getData());
+            $productBatch->assigner_id = $loggedUser["id"];
             $productBatch->creation_date = Time::now();
             $productBatch->closed_date = null;
             $productBatch->quantity_sale_effective = null;
@@ -114,7 +115,7 @@ class ProductBatchesController extends AppController
             'contain' => ['ProductAreas'], 
             'order'=>['ProductAreas.id' => 'ASC', 'Products.name'=>'ASC']
             ]);
-        $users = $this->ProductBatches->Users->find('all', ['contain'=>['Roles'],'conditions' => ['Users.role_id LIKE \'D'.$loggedUserDept.'%\'']]);
+        $users = $this->ProductBatches->Assignees->find('all', ['contain'=>['Roles'],'conditions' => ['Assignees.role_id LIKE \'D'.$loggedUserDept.'%\'']]);
         $this->set(compact('productBatch', 'products', 'users'));
     }
 
@@ -143,12 +144,12 @@ class ProductBatchesController extends AppController
             if ($this->ProductBatches->save($productBatch)) {
                 $this->Flash->success(__('The product batch has been saved.'));
 
-                return $this->redirect(['action' => 'view']);
+                return $this->redirect(['action' => 'view', $id]);
             }
             $this->Flash->error(__('The product batch could not be saved. Please, try again.'));
         }
         $products = $this->ProductBatches->Products->find('list', ['limit' => 200]);
-        $users = $this->ProductBatches->Users->find('list', ['limit' => 200]);
+        $users = $this->ProductBatches->Assignees->find('list', ['limit' => 200]);
         $this->set(compact('productBatch', 'products', 'users'));
     }
 

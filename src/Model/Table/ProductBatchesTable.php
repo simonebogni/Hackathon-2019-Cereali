@@ -10,8 +10,8 @@ use Cake\Validation\Validator;
  * ProductBatches Model
  *
  * @property \App\Model\Table\ProductsTable|\Cake\ORM\Association\BelongsTo $Products
- * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Users
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Assigners
+ * @property \App\Model\Table\UsersTable|\Cake\ORM\Association\BelongsTo $Assignees
  * @property \App\Model\Table\ProductBatchPartitionsTable|\Cake\ORM\Association\HasMany $ProductBatchPartitions
  *
  * @method \App\Model\Entity\ProductBatch get($primaryKey, $options = [])
@@ -141,8 +141,8 @@ class ProductBatchesTable extends Table
     public function buildRules(RulesChecker $rules)
     {
         $rules->add($rules->existsIn(['product_id'], 'Products'));
-        $rules->add($rules->existsIn(['assigner_id'], 'Users'));
-        $rules->add($rules->existsIn(['assignee_id'], 'Users'));
+        $rules->add($rules->existsIn(['assigner_id'], 'Assigners'));
+        $rules->add($rules->existsIn(['assignee_id'], 'Assignees'));
 
         return $rules;
     }
