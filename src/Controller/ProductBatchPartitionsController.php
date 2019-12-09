@@ -72,7 +72,7 @@ class ProductBatchPartitionsController extends AppController
             if ($this->ProductBatchPartitions->save($productBatchPartition)) {
                 $this->Flash->success(__('The product batch partition has been saved.'));
 
-                return $this->redirect(['action' => 'add']);
+                return $this->redirect(['controller'=>'ProductBatches', 'action' => 'view', $batchId]);
             }
             $this->Flash->error(__('The product batch partition could not be saved. Please, try again.'));
         }
@@ -82,7 +82,7 @@ class ProductBatchPartitionsController extends AppController
             $productBatch = $ProductBatches->get($batchId, ['contain' => ['Assignees']]);
             if($productBatch->assignee_id != $loggedUser["id"]){
                 $this->Flash->error(__('You can\'t create partitions if you the batch has not been assigned to you.'));
-                return $this->redirect(['controller'=>'Users', 'action' => 'add']);
+                return $this->redirect(['controller'=>'Users', 'action' => 'index']);
             }
             //get sellers of the same product area
             $users = $this->ProductBatchPartitions->Users->find('all', [

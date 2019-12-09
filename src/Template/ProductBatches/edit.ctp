@@ -76,10 +76,10 @@ $loggedUserRoleLetter = substr($loggedUserRoleId, 0, 1);
                                     } elseif($loggedUserRoleLetter == "D"){
                                     ?>
                                     <div class="form-group">
-                                        <?=  $this->Form->control('quantity_sale_effective',['class'=>'form-control']);?>
+                                        <?=  $this->Form->control('Quantity effectively sold',['class'=>'form-control']);?>
                                     </div>
                                     <div class="form-group">
-                                        <?=  $this->Form->control('quantity_online_sale_effective',['class'=>'form-control']);?>
+                                        <?=  $this->Form->control('Quantity effectively sold online',['class'=>'form-control']);?>
                                     </div>
                                     <div class="form-group">
                                         <?=  $this->Form->control('phytosanitary_information',['class'=>'form-control']);?>
