@@ -1,52 +1,103 @@
-# CakePHP Application Skeleton
+# Cereal Green
 
-[![Build Status](https://img.shields.io/travis/cakephp/app/master.svg?style=flat-square)](https://travis-ci.org/cakephp/app)
-[![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app)
+A web platform built as a Minimum Viable Product for the Hackathon hosted by the company SocialLibreria in 2019, built through the cooperation of 2 students from the Computer Science Bachelor course and 2 students from the Business and Economics Master course from University of Insubria (Varese, Italy).
+The platform has been built using the CakePHP framework and MySQL.
+It is an information system, used internally by a fictional multinational company to address the sale cycle across different departments.
+It was developed rapidly through prototypes over the course of 2 weeks.
 
-A skeleton for creating applications with [CakePHP](https://cakephp.org) 3.x.
+## The company
+The (fictional) company imports cereals from the USA, processes and resell them in Italy, both online and through retailers (defined as "Product A").
+The company also produces food suitable to the needs of celiac people (defined as "Product B").
+With the production waste, the company produces animal feed (defined as "Product C").
 
-The framework source code can be found here: [cakephp/cakephp](https://github.com/cakephp/cakephp).
+The company is divided in different departments, but for the challange we'll be focusing only on the Sales one.
+This department has the following hierarchy:
+ - General manager, who is responsible for the whole Sales department
+ - Division manager, who is responsible for the sale of a specific product
+ - Sellers/Retailers
 
-## Installation
+![The Sales Department hierarchy](http://drive.google.com/uc?export=view&id=1N5o9PE1OMaBCPr3F7xmLOA-pqNCPn4bp "Sales Department hierarchy")
 
-1. Download [Composer](https://getcomposer.org/doc/00-intro.md) or update `composer self-update`.
-2. Run `php composer.phar create-project --prefer-dist cakephp/app [app_name]`.
+## Requirement analysis
+The challange focused on designing and developing an IS that could be used by the Sales department to allow top-down, bottom-up and horizontal information flow.
 
-If Composer is installed globally, run
 
-```bash
-composer create-project --prefer-dist cakephp/app
-```
+### Top-Down information flow
+After they have considered the amount of available product, the general manager splits the amount of expected sales and assigns to each division manager the amount to be sold.
 
-In case you want to use a custom app dir name (e.g. `/myapp/`):
+Each division director does the same towards the retailers.
 
-```bash
-composer create-project --prefer-dist cakephp/app myapp
-```
+### Bottom-up information flow
+Each retailers generates a report based on the information received by their director (e.g. amount of products to sell, amount of products sold, sale price) and sends the information to their own director.
 
-You can now either use your machine's webserver to view the default home page, or start
-up the built-in webserver with:
+The division manager receives the reports from the retailers and they can approve them as they are or they can modify them (e.g. fixing some mistake) before approval.
+Then they can generate a report that summarises their resellers' activity.
+This is a report that is automatically generated and that is subsequently visible to the General manager.
 
-```bash
-bin/cake server -p 8765
-```
+ONLY during shock cases (e.g. flooded areas, theft, a fire in the shop), retailers have a direct communication channel with the General manager, to avoid the lenghtening of the time required to process and pass the information up in the hierarchy.
 
-Then visit `http://localhost:8765` to see the welcome page.
+### Horizontal information flow
+The Sales General Manager is notified by the Production General Manager about the quantity of products that are available for sale.
+Different General managers can also notify each others with summary reports of the shock case events that happened in their respective departments.
 
-## Update
+The Division Managers can notify each others about a surplus or a lack of economical resources.
 
-Since this skeleton is a starting point for your application and various files
-would have been modified as per your needs, there isn't a way to provide
-automated upgrades, so you have to do any updates manually.
+### Information exchanged
+The features with a check sign are those that have been selected to be part of the MVP.
 
-## Configuration
+From the General Manager to the Division Manager:
+ - [x] type of product
+ - [x] number of batches to sell of the specific product
+ - [x] number of batches to reserve for the online market
+ - [ ] sale provisions for the physical market
+ - [ ] sale provisions for the online market
+ - [x] ordinary reference date of the batch
+ - [x] production date of the batch
+ - [x] expiry date of the batch
+ - [x] (Only for product C) phytosanitary information and packaging provisions of the batch
+ - [ ] possible product surplus
 
-Read and edit `config/app.php` and setup the `'Datasources'` and any other
-configuration relevant for your application.
+From the Division Manager to the Retailers (allocation of the products to sell): 
+ - [x] amount of the specific product
+ - [x] advised price
+ - [x] production date of the product
+ - [x] expiry date of the product
+ - [x] which specific product to focus the sales on
 
-## Layout
+From the Retailers to the Division Manager:
+ - [x] product sale report
+ - [x] extraordinary loss (theft, bad storage management, etc.)
+ - [ ] complaints and tips from customers
+ - [ ] sale notes about products, other tips
+ - [ ] possible problems face with the supply (broken packaging, spoiled goods, etc.)
 
-The app skeleton uses a subset of [Foundation](http://foundation.zurb.com/) (v5) CSS
-framework by default. You can, however, replace it with any other library or
-custom styles.
-# TestCake
+From the Division Manager to the Retailers:
+ - [x] report of the sales by product and geographical area
+ - [ ] list of the costs of the physical/online markets
+ - [ ] online sale reports (most searched product, reviews and ratings, etc.)
+
+From the Retailers to the General Manager:
+ - [x] type of schock event: earthquake, unavailable premises, theft, arson, cyberattack, data theft, spoiled product, intoxications, molds or fungi, more (with its actual description)
+ - [x] amount of the monetary loss
+
+Among Gneral Managers:
+- [ ] Budget and general situation
+- [ ] Management of the economic and storage resources
+- [ ] Product promotion, marketing strategies, sale and product trends
+- [ ] product sale report and mid-long term forecasts
+- [ ] phytosanitary shock cases, alteration of the qualitative standards of the product
+- [ ] general information on the business trends
+
+Among the Division Managers:
+- [ ] sharing resources surplus, eventually implementing horizontal recruitment
+
+![The normal information flow](http://drive.google.com/uc?export=view&id=1LdYG-gTRuh7S49WvarfiSOBhAESmwzlF "Normal information flow")
+![The information flow during shock cases](http://drive.google.com/uc?export=view&id=1JmXro9tYDzX3hZcRwl2H3xPujAJqOkDG "Information flow during shock cases")
+
+## The MVP product
+In the Information System, every user has access to a specific set of features based on their role.
+![Different roles give different features](http://drive.google.com/uc?export=view&id=15KrPInM_RdqJ5qukDfuTArtE2lULjdpZ)
+15KrPInM_RdqJ5qukDfuTArtE2lULjdpZ
+
+In particular, every user of a specific role can create their subordinates.
+![User creation and team assignment](http://drive.google.com/uc?export=view&id=15eV2lz23sd6BAB0sKYWBRjARBuiX-Wrz)
