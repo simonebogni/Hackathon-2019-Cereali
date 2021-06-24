@@ -1,4 +1,4 @@
-# Cereal Green
+# CerealGreen
 
 A web platform built as a Minimum Viable Product for the Hackathon hosted by the company SocialLibreria in 2019, built through the cooperation of 2 students from the Computer Science Bachelor course and 2 students from the Business and Economics Master course from University of Insubria (Varese, Italy).
 The platform has been built using the CakePHP framework and MySQL.
@@ -94,10 +94,22 @@ Among the Division Managers:
 ![The normal information flow](http://drive.google.com/uc?export=view&id=1LdYG-gTRuh7S49WvarfiSOBhAESmwzlF "Normal information flow")
 ![The information flow during shock cases](http://drive.google.com/uc?export=view&id=1JmXro9tYDzX3hZcRwl2H3xPujAJqOkDG "Information flow during shock cases")
 
-## The MVP product
+## The MVP Information System
 In the Information System, every user has access to a specific set of features based on their role.
+
 ![Different roles give different features](http://drive.google.com/uc?export=view&id=15KrPInM_RdqJ5qukDfuTArtE2lULjdpZ)
-15KrPInM_RdqJ5qukDfuTArtE2lULjdpZ
 
 In particular, every user of a specific role can create their subordinates.
+Also, the actions that the various users can take are possible through the use of forms.
+
 ![User creation and team assignment](http://drive.google.com/uc?export=view&id=15eV2lz23sd6BAB0sKYWBRjARBuiX-Wrz)
+![User creation forms](http://drive.google.com/uc?export=view&id=1vb-bAT01yw3EVlqejhh6Qbr4rMfuyu2G)
+
+The Information System uses Britecharts, which is a charting library based on the D3.js.
+Information is provided both in details and in an aggregate way.
+
+![Charts using Britecharts](http://drive.google.com/uc?export=view&id=1lR6qiwMMPT1wVxGD8xpcDzY7NVDdMOZu)
+
+The database that has been used is MySQL and it has been modelled the following way, through the analysis of the requirements gathered from the user stories.
+
+![CerealGreen ER Diagram](http://drive.google.com/uc?export=view&id=1kJvx2aXL4rsG_qKRT2V11QRFo6drq-j6)
